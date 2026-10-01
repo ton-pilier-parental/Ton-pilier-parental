@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ton Pilier Maths</title>
+<meta name="description" content="Réviser tout le programme de mathématiques du CP au CM2 : leçons, exercices sans fin, calcul mental chronométré et suivi des progrès.">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3FAF8;--card:#fff;--tx:#14302B;--mut:#5C716D;--pri:#0F8B7A;--pri2:#DDF3EE;--fl:#FF7A1A;--ok:#1E9E5A;--okb:#E0F6EA;--wa:#C2570C;--wab:#FFEBDA;--bd:#D5E8E3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1F1C;--card:#16302B;--tx:#E9F7F3;--mut:#9DBDB5;--pri:#3DD1B8;--pri2:#1C4A42;--ok:#4FD38C;--okb:#15382A;--wa:#FFA766;--wab:#3D2A1A;--bd:#2A5249}}
+:root[data-theme="dark"]{--bg:#0E1F1C;--card:#16302B;--tx:#E9F7F3;--mut:#9DBDB5;--pri:#3DD1B8;--pri2:#1C4A42;--ok:#4FD38C;--okb:#15382A;--wa:#FFA766;--wab:#3D2A1A;--bd:#2A5249}
+*{box-sizing:border-box}html,body{height:auto;margin:0}
+body{background:var(--bg);color:var(--tx);font:17px/1.55 'Atkinson Hyperlegible',system-ui,sans-serif;padding-bottom:84px}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.15;margin:0 0 .5em}
+h2{font-size:22px}
+main{max-width:720px;margin:0 auto;padding:18px 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:16px;margin:0 0 14px}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:14px;padding:14px 20px;font:700 17px/1.25 'Atkinson Hyperlegible',system-ui,sans-serif;cursor:pointer;min-height:48px;width:100%}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn:not(.s),:root:not([data-theme="light"]) #toast{color:#06221D}}
+:root[data-theme="dark"] .btn:not(.s),:root[data-theme="dark"] #toast{color:#06221D}
+.btn.s{background:var(--pri2);color:var(--pri)}.btn.sm{width:auto;padding:10px 16px;min-height:44px}
+.btn:focus-visible,nav button:focus-visible,.opt:focus-visible,.chip:focus-visible,.tab:focus-visible{outline:3px solid var(--fl);outline-offset:2px}
+.hero{display:flex;align-items:center;gap:14px}
+.flame{font-size:60px;line-height:1;animation:fl 2.4s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes fl{50%{transform:scale(1.08) rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){.flame{animation:none}}
+.big{font:800 34px 'Bricolage Grotesque',sans-serif}.mut{color:var(--mut);font-size:15px}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.bar{height:10px;background:var(--pri2);border-radius:9px;overflow:hidden;margin:6px 0 12px}.bar i{display:block;height:100%;background:var(--pri);border-radius:9px;transition:width .5s}
+.tag{display:inline-block;font-size:14px;font-weight:700;border-radius:9px;padding:2px 10px;background:var(--pri2);color:var(--pri);white-space:nowrap}
+.tag.ok{background:var(--okb);color:var(--ok)}.tag.wa{background:var(--wab);color:var(--wa)}
+.blk{border-left:5px solid var(--pri);padding:10px 14px;margin:0 0 12px;background:var(--card);border-radius:0 14px 14px 0;border-top:1px solid var(--bd);border-right:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.blk.wa{border-left-color:var(--fl)}.blk.ok{border-left-color:var(--ok)}.blk.re{background:var(--pri2);border-left-color:var(--pri)}
+.blk h3{font-size:18px;margin-bottom:4px}.blk p,.blk ul{margin:.3em 0}.blk ul{padding-left:20px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:16px}td,th{border:1px solid var(--bd);padding:6px 9px;text-align:center}th{background:var(--pri2)}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--tx);border:2px solid var(--bd);border-radius:14px;padding:13px 15px;margin:0 0 10px;font:inherit;cursor:pointer;min-height:48px}
+.opts.cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.opts.cmp .opt{text-align:center;font-size:26px;font-weight:700;margin:0}
+.opt.ok{border-color:var(--ok);background:var(--okb)}.opt.ko{border-color:var(--fl);background:var(--wab)}
+.fb{border-radius:14px;padding:12px 14px;margin:12px 0}.fb.ok{background:var(--okb)}.fb.ko{background:var(--wab)}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);display:flex;justify-content:center;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;max-width:170px;background:none;border:0;color:var(--mut);font:700 11px/1.3 'Atkinson Hyperlegible',system-ui,sans-serif;padding:8px 2px;border-radius:12px;cursor:pointer;min-height:48px}
+nav button span{display:block;font-size:22px}nav button.on{color:var(--pri);background:var(--pri2)}
+.note{font-size:14px;color:var(--mut);text-align:center;margin-top:20px}
+.inp{width:100%;font:inherit;font-size:22px;padding:12px 15px;border:2px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);min-height:52px}
+.inp:focus{outline:3px solid var(--pri);outline-offset:1px}
+.ans{display:flex;align-items:center;gap:10px;margin:12px 0}.ans b{font-size:20px;white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.chip{background:var(--card);color:var(--tx);border:2px solid var(--bd);border-radius:12px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;min-height:44px}.chip.av{font-size:26px;padding:6px 12px}.chip.on{border-color:var(--pri);background:var(--pri2);color:var(--pri)}
+.chart{display:flex;gap:4px;align-items:flex-end;height:130px;margin:10px 0}.col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}.stk{width:100%;background:var(--wab);border-radius:5px 5px 0 0;display:flex;align-items:flex-end;min-height:2px}.stk i{display:block;width:100%;background:var(--pri);border-radius:5px 5px 0 0}.col small{font-size:10px;color:var(--mut)}
+.bg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}.bd{border:1px solid var(--bd);border-radius:14px;padding:10px;opacity:.55;display:flex;flex-direction:column;gap:2px}.bd.on{opacity:1;background:var(--pri2)}.bd span{font-size:26px}.bd small{color:var(--mut)}
+#toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,20px);background:var(--pri);color:#fff;padding:10px 16px;border-radius:14px;font-weight:700;font-size:15px;opacity:0;pointer-events:none;transition:.3s;max-width:90%;text-align:center;z-index:9}#toast.on{opacity:1;transform:translate(-50%,0)}
+summary{cursor:pointer;font:800 18px 'Bricolage Grotesque',system-ui,sans-serif;min-height:32px;list-style:none;display:flex;justify-content:space-between;align-items:center}summary::-webkit-details-marker{display:none}summary::after{content:'＋';color:var(--pri)}details[open]>summary::after{content:'－'}details[open]>summary{margin-bottom:10px}summary:focus-visible{outline:3px solid var(--fl);outline-offset:4px;border-radius:8px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px}.tab{flex:0 0 auto;border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;padding:8px 16px;font:700 15px/1.2 'Atkinson Hyperlegible',system-ui,sans-serif;cursor:pointer;min-height:44px;white-space:nowrap}.tab.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.nrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--bd)}.nrow:last-child{border-bottom:0}.nrow b{font-size:16px}
+.nrow button.lk{all:unset;cursor:pointer;flex:1}.nrow button.lk:focus-visible{outline:3px solid var(--fl);border-radius:6px}
+.dh{font:800 15px 'Bricolage Grotesque',system-ui,sans-serif;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin:14px 0 0}
+.modes{display:grid;gap:10px;margin:0 0 16px}
+.brand{font:800 14px 'Bricolage Grotesque',system-ui,sans-serif;color:var(--pri);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.sv{display:block;width:100%;max-width:380px;height:auto;margin:12px auto;color:var(--tx)}
+.sv .a{fill:var(--pri)}.sv .b{fill:var(--fl)}.sv .c{fill:var(--card)}.sv .p{fill:var(--pri2)}.sv .n{fill:none}
+.sv .l{stroke:currentColor;stroke-width:2}.sv .la{stroke:var(--pri);stroke-width:3}.sv .k{stroke:var(--bd);stroke-width:1}.sv .gr{stroke:#fff;stroke-opacity:.55;stroke-width:1}
+.sv text{fill:currentColor;font:700 15px 'Atkinson Hyperlegible',system-ui,sans-serif}.sv text.s{font-size:11px;font-weight:400}
+.sv .hh{stroke:var(--fl);stroke-width:7;stroke-linecap:round}.sv .mh{stroke:var(--pri);stroke-width:4;stroke-linecap:round}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.05;font-weight:700;margin:0 2px}.fr>span:first-child{border-bottom:2px solid currentColor;padding:0 3px}
+.op{font:700 26px 'Bricolage Grotesque',system-ui,sans-serif;text-align:center;margin:6px 0}
+.cbig{font:800 44px 'Bricolage Grotesque',sans-serif;text-align:center;margin:8px 0}
+.flash-ok{animation:fo .4s}.flash-ko{animation:fk .4s}@keyframes fo{0%{background:var(--okb)}}@keyframes fk{0%{background:var(--wab)}}
+.lnk{color:var(--pri);font-weight:700}
+</style></head><body>
+<main id="app"></main><div id="toast" role="status" aria-live="polite"></div>
+<nav id="nav" aria-label="Navigation principale"></nav>
+<script>
+/* ===== Base ===== */
+const GOAL=10,$=s=>document.querySelector(s);
+const LVL=['CP','CE1','CE2','CM1','CM2'];
+const DOMS=['Nombres','Calcul','Problèmes','Mesures','Géométrie','Données'];
+let S=null;try{S=JSON.parse(localStorage.getItem('tpm1'))}catch(e){}
+S=S||{xp:0,days:{},m:{},lv:null};
+const save=()=>{try{localStorage.setItem('tpm1',JSON.stringify(S))}catch(e){}};
+const key=d=>new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const tk=()=>key(new Date());
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pk=a=>a[Math.floor(Math.random()*a.length)];
+const shf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const rnd=(x,p=6)=>Math.round(x*10**p)/10**p;
+/* Écriture française d’un nombre : espace pour les milliers, virgule décimale */
+function fmt(n){n=rnd(n);const neg=n<0;let[i,d]=String(Math.abs(n)).split('.');if(i.length>3)i=i.replace(/\B(?=(\d{3})+(?!\d))/g,' ');return(neg?'−':'')+i+(d?','+d:'')}
+const mon=x=>Number.isInteger(rnd(x))?fmt(x):fmt(x).replace(/,(\d)$/,',$10');
+const eur=x=>mon(x)+' €';
+const fr=(n,d)=>`<span class="fr"><span>${n}</span><span>${d}</span></span>`;
+const hm=(h,m)=>`${h} h${m?' '+String(m).padStart(2,'0'):''}`;
+const dur=m=>{const h=Math.floor(m/60),r=m%60;return h?(`${h} h`+(r?` ${r} min`:'')):`${r} min`};
+const NOMS=['Léa','Tom','Inès','Hugo','Jade','Nour','Lucas','Chloé','Adam','Emma','Sami','Rose','Yanis','Lina'];
+const NOM=()=>pk(NOMS);
+const ROM=n=>[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']].reduce((s,[v,r])=>{while(n>=v){s+=r;n-=v}return s},'');
+
+/* Nombres en lettres (orthographe traditionnelle) */
+const U=['zéro','un','deux','trois','quatre','cinq','six','sept','huit','neuf','dix','onze','douze','treize','quatorze','quinze','seize','dix-sept','dix-huit','dix-neuf'];
+const T=['','','vingt','trente','quarante','cinquante','soixante','soixante','quatre-vingt','quatre-vingt'];
+function l100(n,inv){if(n<20)return U[n];const t=Math.floor(n/10),u=n%10;
+ if(t==7||t==9)return T[t]+(t==7&&u==1?' et ':'-')+U[10+u];
+ if(t==8)return u?'quatre-vingt-'+U[u]:(inv?'quatre-vingt':'quatre-vingts');
+ return u==0?T[t]:u==1?T[t]+' et un':T[t]+'-'+U[u]}
+function l1000(n,inv){const c=Math.floor(n/100),r=n%100;if(!c)return l100(r,inv);
+ const cs=c==1?'cent':U[c]+' cent'+(!r&&!inv?'s':'');return r?cs+' '+l100(r,inv):cs}
+function lettres(n){if(n==0)return'zéro';let s=[];const M=Math.floor(n/1e6),K=Math.floor(n/1000)%1000,r=n%1000;
+ if(M)s.push(l1000(M)+(M>1?' millions':' million'));if(K)s.push(K==1?'mille':l1000(K,1)+' mille');if(r)s.push(l1000(r));return s.join(' ')}
+
+/* ===== Constructeurs de questions ===== */
+/* num : réponse à taper ; qcm : réponse à choisir */
+const Nm=(q,a,w,o={})=>({k:'num',q,a:rnd(a),w,...o});
+const pl=(n,w)=>`${fmt(n)} ${w}${n>1?'s':''}`;
+function Qc(q,ans,dis,w,o={}){ans=String(ans);const s=[ans];for(const d of dis.map(String))if(!s.includes(d)&&s.length<4)s.push(d);const op=o.fix?o.fix:shf(s);return{k:'qcm',q,o:op,a:op.indexOf(ans),w,...o}}
+const CMP=(a,b,sa,sb,w)=>{const g=a<b?'<':a>b?'>':'=';return Qc(`Choisis le bon signe :<div class="op">${sa??fmt(a)} … ${sb??fmt(b)}</div>`,g,[],w||(g=='='?'Les deux nombres sont égaux.':`${sa??fmt(a)} est ${g=='<'?'plus petit':'plus grand'} que ${sb??fmt(b)}. Astuce : la pointe du signe montre toujours le plus petit nombre.`),{fix:['<','=','>'],cmp:1})};
+const near=(a,ds)=>ds.map(d=>a+d).filter(x=>x>=0&&x!==a);
+
+/* ===== Dessins SVG ===== */
+const sv=(w,h,s,lab)=>`<svg class="sv" viewBox="0 0 ${w} ${h}" role="img" aria-label="${lab}">${s}</svg>`;
+function dots(n){const F=Math.max(1,Math.ceil(n/10)),cols=Math.min(F,2),fw=138,fh=60;let s='';
+ for(let f=0;f<F;f++){const ox=4+(f%2)*(fw+14),oy=4+Math.floor(f/2)*(fh+12);s+=`<rect x="${ox}" y="${oy}" width="${fw}" height="${fh}" rx="8" class="c l"/>`;
+  for(let i=0;i<10;i++){const x=ox+17+(i%5)*26,y=oy+17+Math.floor(i/5)*26,on=f*10+i<n;s+=`<circle cx="${x}" cy="${y}" r="10" class="${on?'b':'n k'}"/>`}}
+ return sv(8+cols*fw+(cols-1)*14,8+Math.ceil(F/2)*(fh+12)-12,s,`${n} points rangés dans des cadres de 10`)}
+function blocks(c,d,u){let x=4,s='';
+ for(let i=0;i<c;i++){s+=`<rect x="${x}" y="4" width="60" height="60" class="a"/>`;for(let k=1;k<10;k++)s+=`<path d="M${x+k*6} 4v60M${x} ${4+k*6}h60" class="gr"/>`;x+=68}
+ for(let i=0;i<d;i++){s+=`<rect x="${x}" y="4" width="8" height="60" class="a"/>`;for(let k=1;k<10;k++)s+=`<path d="M${x} ${4+k*6}h8" class="gr"/>`;x+=12}
+ if(d)x+=8;for(let i=0;i<u;i++)s+=`<rect x="${x+(i%3)*11}" y="${4+Math.floor(i/3)*11}" width="8" height="8" class="b"/>`;if(u)x+=36;
+ return sv(Math.max(x,80),68,s,`${c} plaques de cent, ${d} barres de dix et ${u} petits cubes`)}
+function clock(h,m){let s=`<circle cx="100" cy="100" r="92" class="c l" stroke-width="4"/>`;
+ for(let i=0;i<60;i++){const a=i*Math.PI/30,L=i%5?5:10;s+=`<line x1="${100+88*Math.sin(a)}" y1="${100-88*Math.cos(a)}" x2="${100+(88-L)*Math.sin(a)}" y2="${100-(88-L)*Math.cos(a)}" class="l" stroke-width="${i%5?1:2.5}"/>`}
+ for(let i=1;i<=12;i++){const a=i*Math.PI/6;s+=`<text x="${100+68*Math.sin(a)}" y="${106-68*Math.cos(a)}" text-anchor="middle">${i}</text>`}
+ const ha=((h%12)+m/60)*Math.PI/6,ma=m*Math.PI/30;
+ s+=`<line x1="100" y1="100" x2="${100+46*Math.sin(ha)}" y2="${100-46*Math.cos(ha)}" class="hh"/><line x1="100" y1="100" x2="${100+74*Math.sin(ma)}" y2="${100-74*Math.cos(ma)}" class="mh"/><circle cx="100" cy="100" r="5" class="b"/>`;
+ return sv(200,200,s,'Horloge à aiguilles : la petite aiguille orange indique les heures, la grande aiguille verte les minutes').replace('class="sv"','class="sv" style="max-width:230px"')}
+function fbar(n,d){const w=300/d;let s='';for(let i=0;i<d;i++)s+=`<rect x="${4+i*w}" y="4" width="${w}" height="50" class="${i<n?'a':'c'} l"/>`;return sv(308,58,s,`Une bande partagée en ${d} parts égales dont ${n} sont coloriées`)}
+function fpie(n,d){let s=`<circle cx="70" cy="70" r="64" class="c l"/>`;for(let i=0;i<d;i++){const a1=i/d*2*Math.PI,a2=(i+1)/d*2*Math.PI,p=(a)=>`${70+64*Math.sin(a)} ${70-64*Math.cos(a)}`;
+ s+=`<path d="M70 70L${p(a1)}A64 64 0 ${a2-a1>Math.PI?1:0} 1 ${p(a2)}Z" class="${i<n?'a':'c'} l"/>`}return sv(140,140,s,`Un disque partagé en ${d} parts égales dont ${n} sont coloriées`).replace('class="sv"','class="sv" style="max-width:170px"')}
+const reg=(k,r,cx,cy,rot=-90)=>[...Array(k)].map((_,i)=>{const a=(rot+i*360/k)*Math.PI/180;return`${(cx+r*Math.cos(a)).toFixed(1)},${(cy+r*Math.sin(a)).toFixed(1)}`}).join(' ');
+const SH={carré:'<rect x="50" y="15" width="100" height="100"/>',rectangle:'<rect x="20" y="30" width="160" height="72"/>',triangle:'<polygon points="100,12 180,120 20,120"/>',disque:'<circle cx="100" cy="66" r="55"/>',
+ losange:'<polygon points="100,8 150,66 100,124 50,66"/>',pentagone:`<polygon points="${reg(5,60,100,70)}"/>`,hexagone:`<polygon points="${reg(6,58,100,66,0)}"/>`,trapèze:'<polygon points="60,25 140,25 185,115 15,115"/>',octogone:`<polygon points="${reg(8,58,100,66,22.5)}"/>`};
+const shape=t=>sv(200,132,SH[t].replace('/>',' class="p la"/>'),'Une figure géométrique');
+function angleS(deg){const vx=deg>100?150:50,vy=130,r=deg>100?120:200,a=deg*Math.PI/180;
+ let s=`<line x1="${vx}" y1="${vy}" x2="${vx+r}" y2="${vy}" class="la"/><line x1="${vx}" y1="${vy}" x2="${vx+r*Math.cos(a)}" y2="${vy-r*Math.sin(a)}" class="la"/>`;
+ s+=deg==90?`<path d="M${vx+18} ${vy}v-18h-18" class="l n"/>`:`<path d="M${vx+28} ${vy}A28 28 0 0 0 ${vx+28*Math.cos(a)} ${vy-28*Math.sin(a)}" class="l n"/>`;
+ return sv(300,145,s+`<circle cx="${vx}" cy="${vy}" r="4" class="b"/>`,'Un angle formé par deux demi-droites')}
+function ruler(st,len){const k=22,x0=12;let s=`<line x1="${x0+st*k}" y1="22" x2="${x0+(st+len)*k}" y2="22" class="b" stroke="var(--fl)" stroke-width="6" stroke-linecap="round"/>`;
+ s+=`<rect x="2" y="40" width="${13*k+20}" height="46" rx="4" class="p l"/>`;
+ for(let i=0;i<=120;i++){const x=x0+i*k/10,L=i%10?(i%5?6:10):16;s+=`<line x1="${x}" y1="40" x2="${x}" y2="${40+L}" class="l" stroke-width="${i%10?1:1.6}"/>`;if(i%10==0)s+=`<text x="${x}" y="78" text-anchor="middle" class="s">${i/10}</text>`}
+ s+=`<line x1="${x0+st*k}" y1="22" x2="${x0+st*k}" y2="40" class="l" stroke-dasharray="3 3"/><line x1="${x0+(st+len)*k}" y1="22" x2="${x0+(st+len)*k}" y2="40" class="l" stroke-dasharray="3 3"/>`;
+ return sv(13*k+24,90,s,`Un trait orange posé au-dessus d’une règle graduée, il commence à la graduation ${st} et finit à la graduation ${st+len}`)}
+function rectF(L,l,u='cm',grid){if(grid){const c=26;let s='';for(let i=0;i<L;i++)for(let j=0;j<l;j++)s+=`<rect x="${6+i*c}" y="${6+j*c}" width="${c}" height="${c}" class="p l" stroke-width="1"/>`;return sv(12+L*c,12+l*c,s,`Un rectangle quadrillé de ${L} carreaux sur ${l} carreaux`)}
+ const W=220,H=Math.max(40,Math.min(150,W*l/L));return sv(W+90,H+50,`<rect x="10" y="10" width="${W}" height="${H}" class="p la"/><text x="${10+W/2}" y="${H+34}" text-anchor="middle">${fmt(L)} ${u}</text><text x="${W+18}" y="${10+H/2+5}">${fmt(l)} ${u}</text>`,`Un rectangle de ${fmt(L)} ${u} sur ${fmt(l)} ${u}`)}
+function lshape(a,b,c,d){/* rectangle a×b auquel on retire un coin c×d, sur quadrillage */const k=24;let s='';for(let i=0;i<a;i++)for(let j=0;j<b;j++){if(i>=a-c&&j<d)continue;s+=`<rect x="${6+i*k}" y="${6+j*k}" width="${k}" height="${k}" class="p l" stroke-width="1"/>`}return sv(12+a*k,12+b*k,s,'Une figure en forme de L dessinée sur un quadrillage')}
+const tick=(x1,y1,x2,y2,n=1)=>{const mx=(x1+x2)/2,my=(y1+y2)/2,dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy),px=-dy/L*7,py=dx/L*7,ux=dx/L*4,uy=dy/L*4;let s='';for(let i=0;i<n;i++){const o=(i-(n-1)/2);s+=`<line x1="${mx+o*ux-px}" y1="${my+o*uy-py}" x2="${mx+o*ux+px}" y2="${my+o*uy+py}" class="l"/>`}return s};
+const TRI={équilatéral:[[100,14],[170,135],[30,135],[1,1,1]],isocèle:[[100,10],[145,135],[55,135],[2,2,0]],rectangle:[[40,20],[40,135],[185,135],[0,0,0]],quelconque:[[25,135],[190,135],[75,35],[0,0,0]]};
+function triS(t){const[A,B,C,m]=TRI[t];let s=`<polygon points="${A} ${B} ${C}" class="p la"/>`;const sd=[[A,B],[B,C],[C,A]];
+ if(t=='isocèle'){s+=tick(...A,...B,2)+tick(...C,...A,2)}else if(t=='équilatéral')sd.forEach(([P,Q])=>s+=tick(...P,...Q,1));
+ if(t=='rectangle')s+=`<path d="M40 117h18v18" class="l n"/>`;return sv(210,148,s,'Un triangle avec ses codages : les petits traits indiquent des côtés de même longueur, le petit carré un angle droit')}
+function triL(a,b,c){return sv(240,170,`<polygon points="120,15 225,150 15,150" class="p la"/><text x="120" y="168" text-anchor="middle">${fmt(a)} cm</text><text x="182" y="78">${fmt(b)} cm</text><text x="58" y="78" text-anchor="end">${fmt(c)} cm</text>`,`Un triangle dont les côtés mesurent ${fmt(a)} cm, ${fmt(b)} cm et ${fmt(c)} cm`)}
+function barsS(D,step,title){const mx=Math.max(...D.map(d=>d[1])),top=Math.ceil(mx/step)*step,H=150,bw=44,gap=18,x0=44,W=x0+D.length*(bw+gap)+10;let s='';
+ for(let v=0;v<=top;v+=step){const y=12+H-v/top*H;s+=`<line x1="${x0}" y1="${y}" x2="${W-6}" y2="${y}" class="k"/><text x="${x0-6}" y="${y+4}" text-anchor="end" class="s">${v}</text>`}
+ D.forEach(([l,v],i)=>{const x=x0+gap/2+i*(bw+gap),h=v/top*H;s+=`<rect x="${x}" y="${12+H-h}" width="${bw}" height="${h}" class="a" rx="3"/><text x="${x+bw/2}" y="${H+30}" text-anchor="middle" class="s">${l}</text>`});
+ return sv(W,H+40,`<line x1="${x0}" y1="12" x2="${x0}" y2="${H+12}" class="l"/>`+s,title)}
+function coins(L){let x=6,y=6,s='',rowH=0;const W=330;L.forEach(v=>{const note=v>=5,w=note?78:48,h=note?44:48;if(x+w>W){x=6;y+=rowH+8;rowH=0}
+ s+=note?`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" class="p la"/><text x="${x+w/2}" y="${y+28}" text-anchor="middle">${v} €</text>`:`<circle cx="${x+24}" cy="${y+24}" r="22" class="${v>=1?'b':'c'} l"/><text x="${x+24}" y="${y+29}" text-anchor="middle" style="font-size:13px">${v>=1?v+' €':Math.round(v*100)+' c'}</text>`;x+=w+8;rowH=Math.max(rowH,h)});
+ return sv(W+6,y+rowH+8,s,'Des pièces et des billets : '+L.map(v=>v>=1?v+' euros':Math.round(v*100)+' centimes').join(', '))}
+function arr(r,c){let s='';for(let i=0;i<r;i++)for(let j=0;j<c;j++)s+=`<circle cx="${16+j*26}" cy="${16+i*26}" r="9" class="a"/>`;return sv(8+c*26+6,8+r*26+6,s,`${r} rangées de ${c} points`).replace('class="sv"','class="sv" style="max-width:300px"')}
+function nline(a,b,step,mark,lab){/* demi-droite graduée avec un point à trouver */const n=(b-a)/step,W=320,k=W/n;let s=`<line x1="10" y1="40" x2="${W+20}" y2="40" class="l"/>`;
+ for(let i=0;i<=n;i++){const x=14+i*k,big=lab(i)!=null;s+=`<line x1="${x}" y1="${big?30:34}" x2="${x}" y2="${big?50:46}" class="l"/>`;if(big)s+=`<text x="${x}" y="70" text-anchor="middle" class="s">${lab(i)}</text>`}
+ const mx=14+mark*k;return sv(W+30,80,s+`<path d="M${mx} 30l-7-14h14z" class="b"/>`,'Une demi-droite graduée avec une flèche orange sur une graduation')}
+
+/* Explications des opérations posées */
+const COL=['unités','dizaines','centaines','milliers','dizaines de mille','centaines de mille'];
+function addX(a,b){const A=String(a).split('').reverse(),B=String(b).split('').reverse();let c=0,st=[];for(let i=0;i<Math.max(A.length,B.length);i++){const x=+(A[i]||0),y=+(B[i]||0),t=x+y+c;st.push(`${COL[i]} : ${x} + ${y}${c?' + 1 de retenue':''} = ${t}${t>9?` → j’écris ${t%10} et je retiens 1`:''}`);c=t>9?1:0}if(c)st.push('j’écris la dernière retenue');return'On pose en colonnes, en commençant par les unités. '+st.join(' ; ')+`. Donc ${fmt(a)} + ${fmt(b)} = ${fmt(a+b)}.`}
+const subX=(a,b)=>`On pose en colonnes, unités sous unités. Quand le chiffre du haut est trop petit, on « casse » une dizaine (ou une centaine) : on ajoute 10 en haut et on retient 1 sur la colonne suivante. ${fmt(a)} − ${fmt(b)} = ${fmt(a-b)}. Vérification : ${fmt(a-b)} + ${fmt(b)} = ${fmt(a)} ✔️`;
+function mulX(a,b){const p=String(a).split('').reverse().map((d,i)=>+d*10**i).filter(x=>x).reverse();return p.length>1?`On décompose ${fmt(a)} = ${p.map(fmt).join(' + ')}. Puis ${p.map(x=>`${fmt(x)} × ${b} = ${fmt(x*b)}`).join(' ; ')}. On ajoute : ${p.map(x=>fmt(x*b)).join(' + ')} = ${fmt(a*b)}.`:`${fmt(a)} × ${b} = ${fmt(a*b)}.`}
+const divX=(a,b,q,r)=>`On cherche combien de fois ${b} dans ${fmt(a)} : ${b} × ${fmt(q)} = ${fmt(b*q)}${r?` et il reste ${fmt(a)} − ${fmt(b*q)} = ${r}`:''}. On vérifie : ${b} × ${fmt(q)}${r?` + ${r}`:''} = ${fmt(a)}, avec un reste plus petit que ${b}.`;
+</script>
+<script>
+/* ===== Programme : notions, leçons et générateurs d’exercices ===== */
+const K='💡 À retenir',E='✏️ Exemple',A='⚠️ Attention',PA='👪 Pour les parents';
+const N=[];
+const add=(lv,dom,id,t,kw,f,g)=>N.push({id,lv,dom,t,kw,f,g});
+
+/* ---------- CP ---------- */
+add(0,'Nombres','cp-cpt','Compter et écrire les nombres jusqu’à 100','compter suivant précédent lettres chiffres',[
+ [K,'<p>Pour compter beaucoup d’objets, on fait des <b>paquets de 10</b>. Un cadre plein = 10.</p>'+dots(13)+'<p class="mut">1 cadre plein (10) et encore 3 : c’est <b>13</b>.</p>'],
+ [E,'<p>Le nombre qui vient <b>juste après</b> 29 est <b>30</b> (on ajoute 1). Juste <b>avant</b> 40, il y a <b>39</b> (on enlève 1).</p><p>On compte de 10 en 10 : 10, 20, 30, 40, 50, 60, 70, 80, 90, 100.</p>'],
+ [A,'<p>Les nombres de 70 à 99 sont difficiles à écrire : <b>soixante-dix</b> = 60 + 10 = 70, <b>quatre-vingts</b> = 4 × 20 = 80, <b>quatre-vingt-dix</b> = 80 + 10 = 90.</p>','wa'],
+ [PA,'<p>Comptez tout ce qui se présente : marches, voitures rouges, fourchettes à mettre sur la table. Faites dire « le suivant » et « le précédent » d’un nombre à voix haute.</p>','ok']],
+ ()=>{const t=R(1,5);
+ if(t==1){const n=R(4,20);return Nm('Combien y a-t-il de points ?',n,'Compte d’abord les cadres pleins (10 chacun), puis les points qui restent.',{img:dots(n)})}
+ if(t==2){const n=R(9,99);return Nm(`Quel nombre vient juste <b>après</b> ${n} ?`,n+1,`Après ${n}, on ajoute 1 : ${n+1}.`)}
+ if(t==3){const n=R(10,100);return Nm(`Quel nombre vient juste <b>avant</b> ${n} ?`,n-1,`Avant ${n}, on enlève 1 : ${n-1}.`)}
+ if(t==4){const n=R(11,99);return Nm(`Écris ce nombre en chiffres : <b>« ${lettres(n)} »</b>`,n,`« ${lettres(n)} » s’écrit ${n}.`)}
+ const s=R(1,5)*10;return Nm(`Continue la suite : ${s}, ${s+10}, ${s+20}, … ?`,s+30,`On avance de 10 en 10 : après ${s+20} vient ${s+30}.`)});
+add(0,'Nombres','cp-dz','Dizaines et unités','dizaine unité chiffre paquet',[
+ [K,'<p>Un nombre à deux chiffres, c’est des <b>dizaines</b> (paquets de 10) et des <b>unités</b>.</p><div class="tw"><table><tr><th>dizaines</th><th>unités</th></tr><tr><td>4</td><td>7</td></tr></table></div><p><b>47</b> = 4 dizaines et 7 unités = 40 + 7.</p>'],
+ [E,blocks(0,3,5)+'<p>3 barres de 10 et 5 cubes : 30 + 5 = <b>35</b>.</p>'],
+ [A,'<p>Dans 60, il y a 6 dizaines et <b>0</b> unité. Le zéro est important : 6 ≠ 60 !</p>','wa'],
+ [PA,'<p>Faites des paquets de 10 avec des pâtes, des bâtonnets ou des Lego, puis demandez combien il y en a en tout sans recompter un par un.</p>','ok']],
+ ()=>{const t=R(1,4),d=R(1,9),u=R(0,9),n=10*d+u;
+ if(t==1)return Nm('Combien y a-t-il de petits cubes en tout ?',n,`${d} barre${d>1?'s':''} de 10 = ${10*d}, plus ${u} cube${u>1?'s':''} : ${10*d} + ${u} = ${n}.`,{img:blocks(0,d,u)});
+ if(t==2)return Nm(`Quel est le chiffre des <b>dizaines</b> dans ${n} ?`,d,`${n} = ${d} dizaines et ${u} unités. Le chiffre des dizaines est celui de gauche : ${d}.`);
+ if(t==3)return Nm(`Quel est le chiffre des <b>unités</b> dans ${n} ?`,u,`Le chiffre des unités est celui de droite : ${u}.`);
+ return Nm(`Quel nombre fait ${d} dizaine${d>1?'s':''} et ${u} unité${u>1?'s':''} ?`,n,`${d} dizaines = ${10*d}, plus ${u} : ${n}.`)});
+add(0,'Nombres','cp-cmp','Comparer et ranger les nombres','comparer plus grand plus petit signe inférieur supérieur ranger',[
+ [K,'<p><b>&lt;</b> veut dire « plus petit que », <b>&gt;</b> veut dire « plus grand que », <b>=</b> veut dire « égal ».</p><p>La pointe du signe montre toujours le <b>plus petit</b> nombre : 12 &lt; 25.</p>'],
+ [E,'<p>Pour comparer 47 et 52, on regarde d’abord les <b>dizaines</b> : 4 &lt; 5, donc 47 &lt; 52.</p><p>Si les dizaines sont pareilles (34 et 38), on regarde les <b>unités</b> : 34 &lt; 38.</p>'],
+ [A,'<p>Ranger dans l’ordre <b>croissant</b> = du plus petit au plus grand. <b>Décroissant</b> = du plus grand au plus petit.</p>','wa'],
+ [PA,'<p>Jouez à la bataille avec des cartes portant des nombres de 0 à 99 : le plus grand gagne, l’enfant explique pourquoi.</p>','ok']],
+ ()=>{const t=R(1,3);if(t==1){const a=R(0,99),b=Math.random()<.15?a:R(0,99);return CMP(a,b)}
+ const L=shf([...new Set([R(10,99),R(10,99),R(10,99),R(10,99),R(10,99)])]).slice(0,4);if(L.length<3)return CMP(R(0,50),R(51,99));
+ const g=t==2,ans=g?Math.max(...L):Math.min(...L);return Qc(`Quel est le <b>plus ${g?'grand':'petit'}</b> nombre ?`,ans,L,`On compare d’abord les dizaines, puis les unités. Le plus ${g?'grand':'petit'} est ${ans}.`)});
+add(0,'Calcul','cp-add','Additionner','addition plus somme ajouter compléments 10',[
+ [K,'<p>Additionner, c’est <b>ajouter</b>. Le signe est <b>+</b> et le résultat s’appelle la <b>somme</b>.</p><p>Les <b>compléments à 10</b> sont à connaître par cœur : 1+9, 2+8, 3+7, 4+6, 5+5.</p>'],
+ [E,'<p>8 + 5 : je complète d’abord à 10 → 8 + 2 = 10, puis il reste 3 → 10 + 3 = <b>13</b>.</p><p>32 + 25 : dizaines 30 + 20 = 50 ; unités 2 + 5 = 7 → <b>57</b>.</p>'],
+ [A,'<p>On peut changer l’ordre : 2 + 9 = 9 + 2. C’est plus facile de partir du plus grand nombre !</p>','wa'],
+ [PA,'<p>Utilisez les doigts pour les compléments à 10 (« il manque combien de doigts levés pour faire 10 ? »). C’est la base de tout le calcul mental.</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const a=R(2,9),b=R(2,9);return Nm(`Calcule :<div class="op">${a} + ${b} = ?</div>`,a+b,a+b>10?`Je complète à 10 : ${Math.max(a,b)} + ${10-Math.max(a,b)} = 10, il reste ${Math.min(a,b)-(10-Math.max(a,b))} → ${a+b}.`:`${a} + ${b} = ${a+b}.`)}
+ if(t==2){const a=R(1,9);return Nm(`Complète :<div class="op">${a} + ? = 10</div>`,10-a,`${a} + ${10-a} = 10. Ce sont les compléments à 10.`)}
+ if(t==3){const a=R(1,7)*10,b=R(1,9);return Nm(`Calcule :<div class="op">${a} + ${b} = ?</div>`,a+b,`${a} + ${b} : ${a/10} dizaines et ${b} unités → ${a+b}.`)}
+ const a=R(11,60),b=R(10,99-a);if((a%10)+(b%10)>9)return Nm(`Calcule :<div class="op">${a} + ${10*Math.floor(b/10)} = ?</div>`,a+10*Math.floor(b/10),`On ajoute les dizaines : ${a} + ${10*Math.floor(b/10)} = ${a+10*Math.floor(b/10)}.`);
+ return Nm(`Calcule :<div class="op">${a} + ${b} = ?</div>`,a+b,`Dizaines : ${a-a%10} + ${b-b%10} = ${a-a%10+b-b%10}. Unités : ${a%10} + ${b%10} = ${a%10+b%10}. Total : ${a+b}.`)});
+add(0,'Calcul','cp-sub','Soustraire','soustraction moins enlever retirer différence',[
+ [K,'<p>Soustraire, c’est <b>enlever</b> ou chercher <b>l’écart</b> entre deux nombres. Le signe est <b>−</b>.</p>'],
+ [E,'<p>12 − 5 : je recule de 2 pour arriver à 10, puis encore de 3 → <b>7</b>.</p><p>On peut aussi compter en avançant : de 5 pour aller à 12, il y a 7.</p>'],
+ [A,'<p>On ne peut pas enlever plus que ce qu’on a : on écrit toujours le plus grand nombre en premier (12 − 5, pas 5 − 12).</p>','wa'],
+ [PA,'<p>Jouez à la marchande : « Tu as 10 bonbons, tu en manges 3, combien en reste-t-il ? » Vérifiez en refaisant l’addition : 7 + 3 = 10.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const a=R(6,20),b=R(1,Math.min(9,a));return Nm(`Calcule :<div class="op">${a} − ${b} = ?</div>`,a-b,`${a} − ${b} = ${a-b}. Vérification : ${a-b} + ${b} = ${a}.`)}
+ if(t==2){const b=R(1,9);return Nm(`Calcule :<div class="op">10 − ${b} = ?</div>`,10-b,`C’est le complément à 10 : ${10-b} + ${b} = 10.`)}
+ const a=R(3,9)*10,b=R(1,a/10-1)*10;return Nm(`Calcule :<div class="op">${a} − ${b} = ?</div>`,a-b,`${pl(a/10,'dizaine')} − ${pl(b/10,'dizaine')} = ${pl((a-b)/10,'dizaine')}, donc ${a-b}.`)});
+add(0,'Calcul','cp-dbl','Doubles et moitiés','double moitié pair',[
+ [K,'<p>Le <b>double</b>, c’est 2 fois le nombre : le double de 4 est 4 + 4 = 8.</p><p>La <b>moitié</b>, c’est partager en 2 parts égales : la moitié de 8 est 4.</p>'],
+ [E,'<div class="tw"><table><tr><th>nombre</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>10</td></tr><tr><th>double</th><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td><td>20</td></tr></table></div>'],
+ [A,'<p>Double et moitié sont des opérations <b>inverses</b> : le double de 6 est 12, et la moitié de 12 est 6.</p>','wa'],
+ [PA,'<p>Les doubles se travaillent avec les deux mains (« 3 doigts et 3 doigts ») et les dominos.</p>','ok']],
+ ()=>{if(Math.random()<.5){const n=Math.random()<.75?R(1,10):R(1,5)*10;return Nm(`Quel est le <b>double</b> de ${n} ?`,2*n,`Le double de ${n}, c’est ${n} + ${n} = ${2*n}.`)}
+ const n=Math.random()<.75?R(1,10):R(1,5)*10;return Nm(`Quelle est la <b>moitié</b> de ${2*n} ?`,n,`${n} + ${n} = ${2*n}, donc la moitié de ${2*n} est ${n}.`)});
+add(0,'Problèmes','cp-pb','Petits problèmes','problème histoire énoncé ajouter enlever',[
+ [K,'<p>Pour résoudre un problème :</p><ul><li>je lis l’histoire deux fois ;</li><li>je cherche la <b>question</b> ;</li><li>je me demande : on <b>ajoute</b> ou on <b>enlève</b> ?</li><li>je calcule et je fais une phrase-réponse.</li></ul>'],
+ [E,'<p>« Léa a 8 billes. Elle en gagne 5. Combien en a-t-elle ? » → elle gagne, ça augmente : 8 + 5 = <b>13 billes</b>.</p>'],
+ [A,'<p>Les mots « de plus » ne veulent pas toujours dire +. Lis bien qui a quoi ! Fais un petit dessin si besoin.</p>','wa'],
+ [PA,'<p>Inventez des histoires du quotidien (courses, goûter, jeux) et demandez à l’enfant de les « mimer » avec des objets avant de calculer.</p>','ok']],
+ ()=>{const n=NOM(),t=R(1,4);
+ if(t==1){const a=R(3,15),b=R(2,9);return Nm(`${n} a ${a} billes. ${n} en gagne ${b} à la récré. Combien de billes a ${n} maintenant ?`,a+b,`${n} gagne des billes, donc on ajoute : ${a} + ${b} = ${a+b} billes.`)}
+ if(t==2){const a=R(8,20),b=R(2,a-2);return Nm(`Dans le bus, il y a ${a} personnes. À l’arrêt, ${b} personnes descendent. Combien de personnes reste-t-il dans le bus ?`,a-b,`Des personnes descendent, donc on enlève : ${a} − ${b} = ${a-b} personnes.`)}
+ if(t==3){const a=R(3,12),b=R(2,8),m=NOM();return Nm(`${n} a ${a} images. ${m} a ${b} images de plus que ${n}. Combien d’images a ${m} ?`,a+b,`${m} en a autant que ${n} et ${b} de plus : ${a} + ${b} = ${a+b} images.`)}
+ const b=R(5,10),a=R(1,b-1);return Nm(`Il faut ${b} assiettes pour mettre la table. ${n} en a déjà posé ${a}. Combien d’assiettes manque-t-il ?`,b-a,`On cherche ce qui manque pour aller de ${a} à ${b} : ${a} + ${b-a} = ${b}. Il manque ${pl(b-a,'assiette')}.`)});
+add(0,'Mesures','cp-mon','La monnaie : les euros','monnaie euro pièce billet payer argent',[
+ [K,'<p>En France, on paie en <b>euros (€)</b>. Il existe des <b>pièces</b> de 1 € et 2 € et des <b>billets</b> de 5 €, 10 €, 20 €, 50 €…</p>'+coins([2,1,5,10])],
+ [E,'<p>Un billet de 10 € et une pièce de 2 € : 10 + 2 = <b>12 €</b>.</p><p>Pour payer 7 €, je peux donner 5 € + 2 €.</p>'],
+ [A,'<p>On compte en commençant par le billet ou la pièce qui vaut le plus.</p>','wa'],
+ [PA,'<p>Laissez l’enfant compter la monnaie pour une petite course ou un jeu de marchande avec de vraies pièces.</p>','ok']],
+ ()=>{if(Math.random()<.65){const L=[];for(let i=R(2,5);i--;)L.push(pk([1,2,2,5,10,10,20]));L.sort((a,b)=>b-a);const s=L.reduce((a,b)=>a+b,0);
+ return Nm('Combien d’euros y a-t-il en tout ?',s,`On commence par le plus gros : ${L.join(' + ')} = ${s} €.`,{img:coins(L),u:'€'})}
+ const p=R(2,9),b=pk([10,10,20]);return Nm(`Un jouet coûte ${p} €. Je paie avec un billet de ${b} €. Combien la marchande me rend-elle ?`,b-p,`De ${p} € pour aller à ${b} €, il manque ${b-p} € : ${p} + ${b-p} = ${b}.`,{u:'€'})});
+add(0,'Mesures','cp-lg','Mesurer des longueurs','longueur règle centimètre cm mesurer',[
+ [K,'<p>Pour mesurer un trait, on utilise une <b>règle graduée</b>. On place le <b>0</b> de la règle au début du trait et on lit le nombre à la fin.</p><p>L’unité est le <b>centimètre (cm)</b>.</p>'],
+ [E,ruler(0,6)+'<p>Le trait commence à 0 et finit à 6 : il mesure <b>6 cm</b>.</p>'],
+ [A,'<p>Si le trait ne commence pas au 0, on compte les centimètres entre le début et la fin (ou on fait la soustraction).</p>','wa'],
+ [PA,'<p>Mesurez ensemble des objets de la maison (crayon, livre, cuillère) et comparez : lequel est le plus long ?</p>','ok']],
+ ()=>{if(Math.random()<.7){const l=R(2,12);return Nm('Combien mesure le trait orange ?',l,`On place le 0 au début du trait : il finit sur ${l}. Il mesure ${l} cm.`,{img:ruler(0,l),u:'cm'})}
+ const a=R(8,15),b=R(3,a-2);return Nm(`Le crayon mesure ${a} cm. La gomme mesure ${b} cm. Combien de centimètres le crayon a-t-il de plus que la gomme ?`,a-b,`On cherche l’écart : ${a} − ${b} = ${a-b} cm.`,{u:'cm'})});
+add(0,'Géométrie','cp-geo','Reconnaître les formes','forme carré rectangle triangle rond cercle côté',[
+ [K,'<ul><li><b>Carré</b> : 4 côtés de même longueur.</li><li><b>Rectangle</b> : 4 côtés, 2 longs et 2 courts.</li><li><b>Triangle</b> : 3 côtés.</li><li><b>Rond (disque)</b> : pas de côté droit.</li></ul>'+shape('carré')],
+ [E,'<p>Une fenêtre, une porte, une feuille : ce sont souvent des <b>rectangles</b>. Une part de pizza ressemble à un <b>triangle</b>.</p>'],
+ [A,'<p>Un carré tourné reste un carré ! Ce sont les côtés qui comptent, pas la position.</p>','wa'],
+ [PA,'<p>Partez à la chasse aux formes dans la maison ou dans la rue.</p>','ok']],
+ ()=>{const t=R(1,3),F=['carré','rectangle','triangle','disque'];
+ if(t==1){const s=pk(F);return Qc('Comment s’appelle cette forme ?',s,F,s=='disque'?'Pas de côté droit : c’est un rond (un disque).':`C’est un ${s} : ${{carré:'4 côtés de même longueur',rectangle:'4 côtés, 2 longs et 2 courts',triangle:'3 côtés'}[s]}.`,{img:shape(s)})}
+ if(t==2){const s=pk(['carré','rectangle','triangle']),n=s=='triangle'?3:4;return Nm(`Combien de côtés a un <b>${s}</b> ?`,n,`Un ${s} a ${n} côtés.`,{img:shape(s)})}
+ return Qc('Quelle forme n’a <b>aucun</b> côté droit ?','le rond (disque)',['le carré','le triangle','le rectangle'],'Le rond (disque) est tout arrondi : il n’a pas de côté droit.')});
+
+/* ---------- CE1 ---------- */
+add(1,'Nombres','ce1-num','Les nombres jusqu’à 1\u00a0000','centaine dizaine unité chiffre nombre lettres',[
+ [K,'<p>Un nombre à trois chiffres a des <b>centaines</b>, des <b>dizaines</b> et des <b>unités</b>.</p><div class="tw"><table><tr><th>centaines</th><th>dizaines</th><th>unités</th></tr><tr><td>3</td><td>4</td><td>6</td></tr></table></div><p><b>346</b> = 300 + 40 + 6. 1 centaine = 10 dizaines = 100 unités.</p>'],
+ [E,blocks(2,3,4)+'<p>2 plaques de 100, 3 barres de 10, 4 cubes : <b>234</b>.</p>'],
+ [A,'<p>Dans 508, il y a <b>0 dizaine</b> : on écrit le 0, sinon on obtiendrait 58 !</p>','wa'],
+ [PA,'<p>Lisez les numéros de maison ou de page à voix haute et demandez « combien de centaines ? ».</p>','ok']],
+ ()=>{const t=R(1,5),c=R(1,9),d=R(0,9),u=R(0,9),n=100*c+10*d+u;
+ if(t==1){const c2=R(1,4),n2=100*c2+10*d+u;return Nm('Quel nombre est représenté ?',n2,`${c2} centaine${c2>1?'s':''} (${100*c2}) + ${d} dizaine${d>1?'s':''} (${10*d}) + ${u} unité${u>1?'s':''} = ${n2}.`,{img:blocks(c2,d,u)})}
+ if(t==2){const w=pk([['centaines',c],['dizaines',d],['unités',u]]);return Nm(`Dans ${n}, quel est le chiffre des <b>${w[0]}</b> ?`,w[1],`${n} : ${c} centaines, ${d} dizaines, ${u} unités. Le chiffre des ${w[0]} est ${w[1]}.`)}
+ if(t==3)return Nm(`Quel nombre s’écrit avec ${c} centaine${c>1?'s':''}, ${d} dizaine${d>1?'s':''} et ${u} unité${u>1?'s':''} ?`,n,`${100*c} + ${10*d} + ${u} = ${n}.`);
+ if(t==4)return Nm(`Écris ce nombre en chiffres : <b>« ${lettres(n)} »</b>`,n,`« ${lettres(n)} » = ${n}.`);
+ const s=pk([10,100]),m=R(100,899);return Nm(`Calcule :<div class="op">${m} + ${s} = ?</div>`,m+s,`Ajouter ${s}, c’est ajouter 1 au chiffre des ${s==10?'dizaines':'centaines'} : ${m+s}.`)});
+add(1,'Nombres','ce1-cmp','Comparer, ranger, encadrer','comparer ranger encadrer ordre croissant décroissant',[
+ [K,'<p>Pour comparer deux nombres de 3 chiffres, on compare d’abord les <b>centaines</b>, puis les <b>dizaines</b>, puis les <b>unités</b>.</p><p>427 &lt; 472 car même centaine (4), mais 2 dizaines &lt; 7 dizaines.</p>'],
+ [E,'<p><b>Encadrer</b> 347 entre deux dizaines : 340 &lt; 347 &lt; 350.</p><p>Encadrer entre deux centaines : 300 &lt; 347 &lt; 400.</p>'],
+ [A,'<p>Un nombre qui a plus de chiffres est plus grand : 98 &lt; 102.</p>','wa'],
+ [PA,'<p>Avec trois cartes chiffres, demandez de fabriquer le plus grand nombre possible, puis le plus petit.</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const a=R(100,999),b=Math.random()<.5?a-a%100+R(0,99):R(100,999);return CMP(a,b)}
+ if(t==2){let x=R(1,9),y=R(0,9),z=R(1,9);while(y==x)y=R(0,9);while(z==x||z==y)z=R(1,9);const L=[...new Set([[x,y,z],[x,z,y],[y,x,z],[z,x,y],[z,y,x],[y,z,x]].filter(a=>a[0]).map(a=>+a.join('')))].slice(0,4),ans=Math.max(...L);
+  return Qc('Quel est le <b>plus grand</b> nombre ?',ans,L,`On compare d’abord les centaines : la plus grande est ${String(ans)[0]}. Le plus grand nombre est ${ans}.`)}
+ if(t==3){const n=R(101,989);if(n%10==0)return CMP(n,n+1);const lo=n-n%10;return Nm(`Complète l’encadrement à la dizaine :<div class="op">? &lt; ${n} &lt; ${lo+10}</div>`,lo,`La dizaine juste avant ${n} est ${lo}.`)}
+ const n=R(101,989);const c=Math.floor(n/100)*100;return Nm(`Complète l’encadrement à la centaine :<div class="op">${c} &lt; ${n} &lt; ?</div>`,c+100,`${n} est entre ${c} et la centaine suivante, ${c+100}.`)});
+add(1,'Calcul','ce1-add','L’addition posée','addition posée retenue colonne somme',[
+ [K,'<p>On aligne les chiffres : <b>unités sous les unités</b>, dizaines sous les dizaines. On commence par la <b>droite</b> (les unités).</p><p>Si le résultat d’une colonne dépasse 9, on écrit les unités et on <b>retient 1</b> dans la colonne suivante.</p>'],
+ [E,'<pre style="font:700 22px monospace;margin:0">  ¹\n  4 7\n+ 3 8\n─────\n  8 5</pre><p>7 + 8 = 15 : j’écris 5, je retiens 1. Puis 1 + 4 + 3 = 8. Résultat : <b>85</b>.</p>'],
+ [A,'<p>N’oublie pas la retenue ! Pour vérifier, estime : 47 + 38, c’est environ 50 + 40 = 90. 85 est proche : c’est cohérent.</p>','wa'],
+ [PA,'<p>Faites poser les additions sur du papier quadrillé, un chiffre par carreau. Cela évite les erreurs d’alignement.</p>','ok']],
+ ()=>{let a,b;if(Math.random()<.55){a=R(15,79);b=R(12,99-a)}else{a=R(105,799);b=R(15,99)}return Nm(`Pose et calcule :<div class="op">${a} + ${b} = ?</div>`,a+b,addX(a,b))});
+add(1,'Calcul','ce1-sub','La soustraction','soustraction posée retenue moins différence écart',[
+ [K,'<p>On pose la soustraction en mettant le <b>plus grand nombre en haut</b>, unités sous unités. On commence par les unités.</p>'],
+ [E,'<p>52 − 27 : on ne peut pas faire 2 − 7. On casse une dizaine : 12 − 7 = 5, puis 4 − 2 = 2. Résultat : <b>25</b>.</p><p>Vérification : 25 + 27 = 52 ✔️</p>'],
+ [A,'<p>On vérifie toujours une soustraction par une addition.</p>','wa'],
+ [PA,'<p>Pour le calcul mental, faites « compter en avançant » : de 27 à 30 (+3), de 30 à 52 (+22) → 25.</p>','ok']],
+ ()=>{let a,b;const t=R(1,3);if(t==1){a=R(30,99);b=R(11,a-5)}else if(t==2){a=R(150,999);b=R(11,99)}else{a=R(300,999);b=R(101,a-50)}return Nm(`Calcule :<div class="op">${a} − ${b} = ?</div>`,a-b,subX(a,b))});
+add(1,'Calcul','ce1-mul','Multiplier : tables de 2, 3, 4, 5 et 10','multiplication fois table produit',[
+ [K,'<p>Multiplier, c’est additionner <b>plusieurs fois le même nombre</b> : 4 + 4 + 4 = 3 × 4 = 12.</p>'+arr(3,4)+'<p class="mut">3 rangées de 4 : 3 × 4 = 12.</p>'],
+ [E,'<div class="tw"><table><tr><th>×</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>'+[2,3,4,5,10].map(k=>`<tr><th>${k}</th>${[1,2,3,4,5,6,7,8,9,10].map(i=>`<td>${k*i}</td>`).join('')}</tr>`).join('')+'</table></div>'],
+ [A,'<p>3 × 4 = 4 × 3 : on peut échanger les nombres. Et multiplier par 10, c’est ajouter un 0 au nombre entier : 7 × 10 = 70.</p>','wa'],
+ [PA,'<p>Récitez les tables dans la voiture ou en marchant, puis posez des questions dans le désordre : « 4 fois 7 ? ».</p>','ok']],
+ ()=>{const t=R(1,3),a=pk([2,3,4,5,10]),b=R(1,10);
+ if(t==1)return Nm(`Calcule :<div class="op">${a} × ${b} = ?</div>`,a*b,`Table de ${a} : ${a} × ${b} = ${a*b}.`);
+ if(t==2){const r=R(2,4),c=R(2,6);return Nm('Combien y a-t-il de points ?',r*c,`Il y a ${r} rangées de ${c} points : ${r} × ${c} = ${r*c}.`,{img:arr(r,c)})}
+ const k=R(3,5);return Nm(`Complète :<div class="op">${Array(k).fill(a).join(' + ')} = ? × ${a}</div>`,k,`On additionne ${k} fois le nombre ${a} : c’est ${k} × ${a} = ${k*a}.`)});
+add(1,'Problèmes','ce1-pb','Résoudre des problèmes','problème énoncé addition soustraction multiplication partage',[
+ [K,'<p>Je lis l’énoncé, je repère la <b>question</b>, je cherche les <b>données utiles</b>, puis je choisis l’opération :</p><ul><li>on réunit, on gagne → <b>+</b></li><li>on perd, on enlève, on cherche un écart → <b>−</b></li><li>plusieurs fois la même quantité → <b>×</b></li></ul>'],
+ [E,'<p>« Une boîte contient 6 œufs. Combien d’œufs dans 4 boîtes ? » → 4 fois 6 : 4 × 6 = <b>24 œufs</b>.</p>'],
+ [A,'<p>Certains problèmes ont <b>deux étapes</b> : fais un calcul, puis un deuxième avec le résultat.</p>','wa'],
+ [PA,'<p>Demandez à l’enfant de reformuler l’histoire avec ses mots avant de calculer.</p>','ok']],
+ ()=>{const n=NOM(),t=R(1,4);
+ if(t==1){const a=R(30,60),b=R(5,15),c=R(2,9);return Nm(`${n} a ${a} €. ${n} achète un livre à ${b} € et un stylo à ${c} €. Combien lui reste-t-il ?`,a-b-c,`Dépense totale : ${b} + ${c} = ${b+c} €. Il reste : ${a} − ${b+c} = ${a-b-c} €.`,{u:'€'})}
+ if(t==2){const b=pk([2,3,4,5,10]),k=R(3,9);const o=pk([['boîtes','crayons'],['paquets','gâteaux'],['sachets','billes']]);return Nm(`Il y a ${k} ${o[0]} de ${b} ${o[1]}. Combien y a-t-il de ${o[1]} en tout ?`,k*b,`${k} fois ${b} : ${k} × ${b} = ${k*b} ${o[1]}.`)}
+ if(t==3){const a=R(30,45),b=R(5,12);return Nm(`La maman de ${n} a ${a} ans. ${n} a ${b} ans. Combien d’années les séparent ?`,a-b,`On cherche l’écart : ${a} − ${b} = ${a-b} ans.`,{u:'ans'})}
+ const k=pk([2,3,4,5]),q=R(2,8);return Nm(`On partage ${k*q} cartes entre ${k} enfants, chacun en reçoit autant. Combien de cartes a chaque enfant ?`,q,`${k} × ${q} = ${k*q}, donc chaque enfant reçoit ${q} cartes.`)});
+add(1,'Mesures','ce1-h','Lire l’heure','heure horloge aiguille minute demi quart',[
+ [K,'<p>La <b>petite aiguille</b> montre les <b>heures</b>, la <b>grande aiguille</b> montre les <b>minutes</b>.</p><ul><li>grande aiguille sur 12 → heure pile (« 3 h »)</li><li>sur 3 → et quart (15 min)</li><li>sur 6 → et demie (30 min)</li><li>sur 9 → moins le quart (45 min)</li></ul>'+clock(3,15)+'<p class="mut">Il est 3 h 15 (trois heures et quart).</p>'],
+ [E,'<p>1 heure = <b>60 minutes</b>. Une demi-heure = 30 min. Un quart d’heure = 15 min.</p>'],
+ [A,'<p>À 3 h 45, la petite aiguille est presque sur 4, mais il n’est pas encore 4 h : on lit le nombre qu’elle a <b>dépassé</b>.</p>','wa'],
+ [PA,'<p>Une vraie horloge à aiguilles à la maison aide beaucoup. Demandez l’heure plusieurs fois par jour.</p>','ok']],
+ ()=>{if(Math.random()<.75){const h=R(1,11),m=pk([0,15,30,45]);const dis=[hm(h,(m+15)%60),hm(h,(m+30)%60),hm(h%12+1,m),hm(m?m/5:12,h*5%60)];return Qc('Quelle heure indique l’horloge ?',hm(h,m),shf(dis),`La petite aiguille a dépassé le ${h}${m?'':' (elle est dessus)'} et la grande est sur le ${m?m/5:12} → ${hm(h,m)}.`,{img:clock(h,m)})}
+ const w=pk([['une heure',60],['une demi-heure',30],['un quart d’heure',15],['deux heures',120]]);return Nm(`Combien de minutes y a-t-il dans ${w[0]} ?`,w[1],`1 heure = 60 minutes, donc ${w[0]} = ${w[1]} minutes.`,{u:'min'})});
+add(1,'Mesures','ce1-mes','Longueurs, masses et contenances','mètre centimètre kilogramme gramme litre unité mesure règle',[
+ [K,'<ul><li>Longueurs : <b>1 m = 100 cm</b> ; 1 km = 1 000 m.</li><li>Masses : <b>1 kg = 1 000 g</b>.</li><li>Contenances : le <b>litre (L)</b>.</li></ul>'],
+ [E,'<p>Une gomme mesure environ 4 <b>cm</b>, une porte 2 <b>m</b>. Une pomme pèse environ 150 <b>g</b>, un sac de farine 1 <b>kg</b>. Une bouteille d’eau contient 1 <b>L</b>.</p>'],
+ [A,'<p>Si le trait ne commence pas au 0 de la règle, on soustrait : début 2, fin 9 → 9 − 2 = 7 cm.</p>'+ruler(2,7),'wa'],
+ [PA,'<p>Faites peser des fruits, mesurer la table avec un mètre ruban, remplir une bouteille d’un litre avec des verres.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const w=pk([()=>{const k=R(1,5);return[`${k} m = ? cm`,100*k,`1 m = 100 cm, donc ${k} m = ${100*k} cm.`,'cm']},()=>{const k=R(1,5);return[`${100*k} cm = ? m`,k,`100 cm = 1 m, donc ${100*k} cm = ${k} m.`,'m']},()=>{const k=R(1,4);return[`${k} kg = ? g`,1000*k,`1 kg = 1 000 g, donc ${k} kg = ${fmt(1000*k)} g.`,'g']},()=>{const c=R(10,90);return[`1 m ${c} cm = ? cm`,100+c,`1 m = 100 cm, donc 100 + ${c} = ${100+c} cm.`,'cm']}])();return Nm(`Complète :<div class="op">${w[0]}</div>`,w[1],w[2],{u:w[3]})}
+ if(t==2){const w=pk([['la longueur d’une piscine','m'],['la longueur d’une gomme','cm'],['la masse d’une pomme','g'],['la masse d’un sac de pommes de terre','kg'],['la contenance d’un seau','L'],['la distance entre deux villes','km']]);return Qc(`Quelle unité choisir pour mesurer <b>${w[0]}</b> ?`,w[1],['m','cm','g','kg','L','km'].filter(x=>x!=w[1]).sort(()=>Math.random()-.5),`Pour ${w[0]}, on utilise le ${{m:'mètre (m)',cm:'centimètre (cm)',g:'gramme (g)',kg:'kilogramme (kg)',L:'litre (L)',km:'kilomètre (km)'}[w[1]]}.`)}
+ const s=R(1,3),l=R(3,8);return Nm('Combien mesure le trait orange ?',l,`Le trait va de ${s} à ${s+l} : ${s+l} − ${s} = ${l} cm.`,{img:ruler(s,l),u:'cm'})});
+add(1,'Géométrie','ce1-geo','Polygones et angle droit','polygone côté sommet angle droit carré rectangle triangle',[
+ [K,'<p>Un <b>polygone</b> est une figure fermée faite de segments (les <b>côtés</b>). Les points où se rejoignent les côtés sont les <b>sommets</b>.</p><ul><li>3 côtés : triangle</li><li>4 côtés : quadrilatère (carré, rectangle, losange…)</li><li>5 côtés : pentagone</li><li>6 côtés : hexagone</li></ul>'],
+ [E,'<p>Le <b>carré</b> a 4 côtés égaux et 4 angles droits. Le <b>rectangle</b> a 4 angles droits et ses côtés opposés égaux.</p><p>On vérifie un angle droit avec l’<b>équerre</b>.</p>'],
+ [A,'<p>Un rond (disque) n’est pas un polygone : il n’a pas de côté droit.</p>','wa'],
+ [PA,'<p>Fabriquez une « équerre » en pliant une feuille deux fois et cherchez des angles droits dans la maison.</p>','ok']],
+ ()=>{const t=R(1,3),P={triangle:3,carré:4,rectangle:4,losange:4,pentagone:5,hexagone:6,octogone:8};
+ if(t==1){const s=pk(Object.keys(P));return Nm('Combien de côtés a cette figure ?',P[s],`Compte les segments : ${P[s]}. C’est un ${s}.`,{img:shape(s)})}
+ if(t==2){const s=pk(['triangle','pentagone','hexagone','losange','octogone']);return Qc('Comment s’appelle ce polygone ?',s,['triangle','pentagone','hexagone','losange','octogone','rectangle'],`Il a ${P[s]} côtés${s=='losange'?' de même longueur':''} : c’est un ${s}.`,{img:shape(s)})}
+ return pk([()=>Qc('Quelle figure a <b>4 côtés de même longueur et 4 angles droits</b> ?','le carré',['le rectangle','le losange','le triangle'],'C’est le carré : 4 côtés égaux et 4 angles droits.'),()=>Nm('Combien d’angles droits a un rectangle ?',4,'Un rectangle a 4 angles droits.'),()=>Nm('Combien de sommets a un hexagone ?',6,'Un hexagone a 6 côtés et 6 sommets.')])()});
+
+/* ---------- CE2 ---------- */
+add(2,'Nombres','ce2-num','Les nombres jusqu’à 10\u00a0000','millier centaine chiffre nombre de lettres',[
+ [K,'<div class="tw"><table><tr><th>milliers</th><th>centaines</th><th>dizaines</th><th>unités</th></tr><tr><td>4</td><td>2</td><td>0</td><td>7</td></tr></table></div><p><b>4 207</b> = 4 000 + 200 + 7. On laisse un petit espace entre les milliers et les centaines.</p>'],
+ [E,'<p>Le <b>chiffre</b> des centaines de 4 207 est <b>2</b>. Mais le <b>nombre</b> de centaines est <b>42</b> (il y a 42 centaines dans 4 200).</p>'],
+ [A,'<p>« Chiffre des centaines » et « nombre de centaines », ce n’est pas pareil ! Pour le nombre, on prend tous les chiffres à gauche, colonne des centaines comprise.</p>','wa'],
+ [PA,'<p>Utilisez les prix (voiture, vélo, voyage) pour lire et comparer de grands nombres.</p>','ok']],
+ ()=>{const t=R(1,5),n=R(1000,9999),s=String(n);
+ if(t==1){const w=pk([['milliers',0],['centaines',1],['dizaines',2],['unités',3]]);return Nm(`Dans ${fmt(n)}, quel est le <b>chiffre</b> des ${w[0]} ?`,+s[w[1]],`${fmt(n)} : ${s[0]} milliers, ${s[1]} centaines, ${s[2]} dizaines, ${s[3]} unités.`)}
+ if(t==2)return Nm(`Combien y a-t-il de <b>centaines</b> en tout dans ${fmt(n)} ?`,Math.floor(n/100),`On prend tous les chiffres jusqu’à celui des centaines : ${Math.floor(n/100)}. (${fmt(Math.floor(n/100)*100)} = ${Math.floor(n/100)} × 100)`);
+ if(t==3)return Nm(`Écris en chiffres : <b>« ${lettres(n)} »</b>`,n,`« ${lettres(n)} » = ${fmt(n)}.`);
+ if(t==4){const m=R(1,9)*1000,c=R(0,9)*100,u=R(1,9);return Nm(`Calcule :<div class="op">${fmt(m)} + ${c} + ${u} = ?</div>`,m+c+u,`On range chaque chiffre dans sa colonne : ${fmt(m+c+u)}. Attention au 0 des dizaines !`)}
+ const b=R(1,9)*1000-1;return Nm(`Quel nombre vient juste après ${fmt(b)} ?`,b+1,`${fmt(b)} + 1 = ${fmt(b+1)} : toutes les colonnes à 9 repassent à 0.`)});
+add(2,'Calcul','ce2-as','Addition et soustraction posées','addition soustraction posée retenue calcul réfléchi',[
+ [K,'<p>On aligne les chiffres <b>à droite</b> (unités sous unités) et on calcule de droite à gauche en n’oubliant pas les <b>retenues</b>.</p>'],
+ [E,'<p><b>Calcul malin</b> : 198 + 47 = 200 + 47 − 2 = <b>245</b>. 503 − 99 = 503 − 100 + 1 = <b>404</b>.</p>'],
+ [A,'<p>Estime avant de calculer : 2 487 + 1 312, c’est environ 2 500 + 1 300 = 3 800. Ton résultat doit être proche.</p>','wa'],
+ [PA,'<p>Après chaque soustraction, faites vérifier par l’addition : c’est un réflexe qui évite beaucoup d’erreurs.</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const a=R(1200,6999),b=R(250,2999);return Nm(`Calcule :<div class="op">${fmt(a)} + ${fmt(b)} = ?</div>`,a+b,addX(a,b))}
+ if(t==2){const a=R(2000,9999),b=R(300,a-500);return Nm(`Calcule :<div class="op">${fmt(a)} − ${fmt(b)} = ?</div>`,a-b,subX(a,b))}
+ if(t==3){const k=pk([99,98,199,299]),a=R(25,400);return Nm(`Calcule astucieusement :<div class="op">${a} + ${k} = ?</div>`,a+k,`${k} = ${k+(100-k%100)} − ${100-k%100}. Donc ${a} + ${k+(100-k%100)} − ${100-k%100} = ${a+k}.`)}
+ const a=R(200,900),k=pk([99,101]);return Nm(`Calcule astucieusement :<div class="op">${a} − ${k} = ?</div>`,a-k,`On enlève 100 puis on ${k==99?'rajoute':'enlève encore'} 1 : ${a-100} ${k==99?'+':'−'} 1 = ${a-k}.`)});
+add(2,'Calcul','ce2-tab','Les tables de multiplication','table multiplication fois produit par coeur',[
+ [K,'<div class="tw"><table><tr><th>×</th>'+[2,3,4,5,6,7,8,9].map(i=>`<th>${i}</th>`).join('')+'</tr>'+[2,3,4,5,6,7,8,9].map(k=>`<tr><th>${k}</th>${[2,3,4,5,6,7,8,9].map(i=>`<td>${k*i}</td>`).join('')}</tr>`).join('')+'</table></div>'],
+ [E,'<p>Astuces : × 4 = double du double. × 9 : 9 × 7 = 70 − 7 = 63. Dans la table de 5, les résultats finissent par 0 ou 5.</p>'],
+ [A,'<p>Les « pièges » les plus fréquents : 6 × 7 = 42, 7 × 8 = 56, 6 × 8 = 48, 7 × 7 = 49.</p>','wa'],
+ [PA,'<p>5 minutes par jour suffisent. Commencez par les tables connues et ajoutez-en une nouvelle chaque semaine. Le mode « Calcul mental chrono » est idéal pour ça.</p>','ok']],
+ ()=>{const a=R(2,9),b=R(2,10),t=R(1,3);
+ if(t==1)return Nm(`Calcule :<div class="op">${a} × ${b} = ?</div>`,a*b,`${a} × ${b} = ${a*b}.`);
+ if(t==2)return Nm(`Complète :<div class="op">${a} × ? = ${a*b}</div>`,b,`Dans la table de ${a} : ${a} × ${b} = ${a*b}.`);
+ const ans=a*R(2,9);const dis=near(ans,[1,-1,2,3,-3,a+1]).filter(x=>x%a);return Qc(`Quel nombre est dans la <b>table de ${a}</b> ?`,ans,shf(dis),`${ans} = ${a} × ${ans/a}.`)});
+add(2,'Calcul','ce2-mul','La multiplication posée','multiplication posée retenue fois 10 100',[
+ [K,'<p>Pour multiplier par un nombre à un chiffre, on multiplie <b>chaque chiffre</b> en commençant par les unités, avec les retenues.</p><p>Multiplier un nombre entier par <b>10</b>, c’est écrire un 0 à droite ; par <b>100</b>, deux 0.</p>'],
+ [E,'<p>46 × 3 = (40 × 3) + (6 × 3) = 120 + 18 = <b>138</b>.</p><p>25 × 10 = 250 ; 25 × 100 = 2 500.</p>'],
+ [A,'<p>La retenue s’ajoute <b>après</b> avoir multiplié : 6 × 3 = 18, j’écris 8 je retiens 1 ; puis 4 × 3 = 12, + 1 = 13.</p>','wa'],
+ [PA,'<p>Montrez que 46 × 3, c’est 46 + 46 + 46 pour faire le lien avec l’addition.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const a=R(12,99),b=R(2,9);return Nm(`Calcule :<div class="op">${a} × ${b} = ?</div>`,a*b,mulX(a,b))}
+ if(t==2){const a=R(102,499),b=R(2,6);return Nm(`Calcule :<div class="op">${a} × ${b} = ?</div>`,a*b,mulX(a,b))}
+ const a=R(3,99),k=pk([10,100]);return Nm(`Calcule :<div class="op">${a} × ${k} = ?</div>`,a*k,`Multiplier par ${k}, c’est écrire ${k==10?'un 0':'deux 0'} à droite : ${fmt(a*k)}.`)});
+add(2,'Calcul','ce2-div','Partager et diviser','division partage quotient reste combien de fois',[
+ [K,'<p><b>Diviser</b>, c’est partager en parts égales ou chercher <b>combien de fois</b> un nombre est contenu dans un autre.</p><p>24 ÷ 6 = 4 car 6 × 4 = 24.</p>'],
+ [E,'<p>On partage 29 billes entre 4 enfants : 4 × 7 = 28. Chacun a <b>7 billes</b> et il en <b>reste 1</b>.</p><p>On écrit : 29 = (4 × 7) + 1.</p>'],
+ [A,'<p>Le reste est toujours <b>plus petit</b> que le nombre de parts. S’il reste 5 billes pour 4 enfants, on peut encore en donner une à chacun !</p>','wa'],
+ [PA,'<p>Partagez des bonbons ou des cartes entre plusieurs personnes, et parlez de ce qui « reste ».</p>','ok']],
+ ()=>{const t=R(1,3),b=R(2,9),q=R(2,9);
+ if(t==1)return Nm(`Calcule :<div class="op">${b*q} ÷ ${b} = ?</div>`,q,`${b} × ${q} = ${b*q}, donc ${b*q} ÷ ${b} = ${q}.`);
+ const r=R(1,b-1),a=b*q+r;if(t==2)return Nm(`On partage ${a} billes entre ${b} enfants. Combien de billes reçoit chaque enfant ?`,q,`${b} × ${q} = ${b*q} et il reste ${r}. Chaque enfant reçoit ${q} billes.`,{u:'billes'});
+ return Nm(`On partage ${a} billes entre ${b} enfants (chacun en reçoit autant). Combien de billes <b>reste-t-il</b> ?`,r,`${b} × ${q} = ${b*q}. ${a} − ${b*q} = ${r}. Il reste ${r} bille${r>1?'s':''}.`)});
+add(2,'Problèmes','ce2-pb','Problèmes','problème étapes multiplication division argent',[
+ [K,'<p>Méthode : <b>1.</b> Je lis et je reformule. <b>2.</b> Je repère la question. <b>3.</b> Je trouve les étapes. <b>4.</b> Je calcule. <b>5.</b> Je réponds par une phrase.</p>'],
+ [E,'<p>« Un cinéma a 12 rangées de 9 places. 85 places sont occupées. Combien de places libres ? »</p><p>Étape 1 : 12 × 9 = 108 places. Étape 2 : 108 − 85 = <b>23 places libres</b>.</p>'],
+ [A,'<p>Vérifie que ta réponse est logique (un enfant ne peut pas avoir 300 ans !).</p>','wa'],
+ [PA,'<p>Faites dessiner un schéma (barres, cases) : c’est souvent la clé pour comprendre l’énoncé.</p>','ok']],
+ ()=>{const n=NOM(),t=R(1,4);
+ if(t==1){const r=R(8,15),p=R(6,10),o=R(20,r*p-10);return Nm(`Une salle a ${r} rangées de ${p} chaises. ${o} chaises sont occupées. Combien de chaises sont libres ?`,r*p-o,`Nombre de chaises : ${r} × ${p} = ${r*p}. Libres : ${r*p} − ${o} = ${r*p-o}.`)}
+ if(t==2){const p=R(3,9),k=R(3,8),b=pk([50,100]);if(p*k>=b)return Nm(`${n} achète ${k} cahiers à ${p} €. Combien paie ${n} ?`,p*k,`${k} × ${p} = ${p*k} €.`,{u:'€'});return Nm(`${n} achète ${k} cahiers à ${p} € et paie avec un billet de ${b} €. Combien lui rend-on ?`,b-p*k,`Prix : ${k} × ${p} = ${p*k} €. Rendu : ${b} − ${p*k} = ${b-p*k} €.`,{u:'€'})}
+ if(t==3){const g=R(3,8),e=g*R(4,9);return Nm(`${e} élèves doivent former des équipes de ${g}. Combien d’équipes peut-on faire ?`,e/g,`${e} ÷ ${g} = ${e/g} car ${g} × ${e/g} = ${e}.`)}
+ const a=R(120,400),b=R(50,150);return Nm(`Le lundi, la boulangerie vend ${a} baguettes. Le mardi, elle en vend ${b} de plus. Combien de baguettes vendues en tout sur les deux jours ?`,2*a+b,`Mardi : ${a} + ${b} = ${a+b}. Total : ${a} + ${a+b} = ${2*a+b} baguettes.`)});
+add(2,'Nombres','ce2-frac','Premières fractions','fraction moitié demi tiers quart partage',[
+ [K,'<p>Quand on partage une unité en parts <b>égales</b>, chaque part est une <b>fraction</b>.</p><ul><li>en 2 : un demi '+fr(1,2)+'</li><li>en 3 : un tiers '+fr(1,3)+'</li><li>en 4 : un quart '+fr(1,4)+'</li></ul>'+fbar(3,4)+'<p class="mut">3 parts sur 4 sont coloriées : '+fr(3,4)+' (trois quarts).</p>'],
+ [E,'<p>La moitié de 12 = 12 ÷ 2 = 6. Le quart de 20 = 20 ÷ 4 = 5. Le tiers de 15 = 15 ÷ 3 = 5.</p>'],
+ [A,'<p>Les parts doivent être <b>égales</b> ! Le nombre du bas dit en combien on partage, celui du haut combien on en prend.</p>','wa'],
+ [PA,'<p>Partagez une pizza, une tablette de chocolat ou une feuille pliée et nommez les parts.</p>','ok']],
+ ()=>{const t=R(1,2);
+ if(t==1){const d=pk([2,3,4]),n=R(1,d-1);const dis=[];for(let x=1;x<=4;x++)for(let y=2;y<=5;y++)if(x<y&&x*d!=n*y)dis.push(`${x}/${y}`);const q=Qc('Quelle fraction de la figure est coloriée ?',`${n}/${d}`,shf(dis),`La figure est partagée en ${d} parts égales et ${n} ${n>1?'sont coloriées':'est coloriée'} : ${n}/${d}.`,{img:Math.random()<.5?fbar(n,d):fpie(n,d)});q.o=q.o.map(s=>{const[a,b]=s.split('/');return fr(a,b)});return q}
+ const w=pk([['la moitié',2],['le tiers',3],['le quart',4]]),q=R(2,10);return Nm(`Combien vaut <b>${w[0]}</b> de ${q*w[1]} ?`,q,`${w[0][0].toUpperCase()+w[0].slice(1)} de ${q*w[1]}, c’est ${q*w[1]} ÷ ${w[1]} = ${q}.`)});
+add(2,'Mesures','ce2-dur','Heures et durées','heure minute durée horloge temps',[
+ [K,'<p><b>1 h = 60 min</b> ; <b>1 min = 60 s</b> ; 1 jour = 24 h ; 1 semaine = 7 jours.</p><p>La grande aiguille : chaque chiffre vaut <b>5 minutes</b> (sur le 4 → 20 min).</p>'+clock(10,20)+'<p class="mut">Il est 10 h 20.</p>'],
+ [E,'<p>Le film commence à 14 h 10 et dure 45 min : 14 h 10 + 50 min = 15 h, donc <b>14 h 55</b>.</p>'],
+ [A,'<p>On ne calcule pas les heures comme des nombres ordinaires : 60 minutes font 1 heure, pas 100 !</p>','wa'],
+ [PA,'<p>Demandez « à quelle heure partons-nous si le trajet dure 40 minutes ? ». Les vraies situations aident beaucoup.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const h=R(1,11),m=R(1,11)*5;return Qc('Quelle heure indique l’horloge ?',hm(h,m),[hm(h,(m+30)%60),hm(h+1,m),hm(Math.round(m/5)||12,h*5),hm(h,(m+5)%60)],`Petite aiguille entre ${h} et ${h+1} → ${h} h. Grande aiguille sur le ${m/5} → ${m/5} × 5 = ${m} min.`,{img:clock(h,m)})}
+ if(t==2){const h=R(8,17),m=R(0,5)*10,d=pk([15,20,25,30,35,40,45,50]),e=h*60+m+d;const H=x=>hm(Math.floor(x/60),x%60);return Qc(`Un dessin animé commence à <b>${hm(h,m)}</b> et dure <b>${d} min</b>. À quelle heure se termine-t-il ?`,H(e),[H(e+10),H(e-10),m+d>=60?hm(h,(m+d)%60):H(e+60),H(e+30)],`${hm(h,m)} + ${d} min = ${hm(Math.floor(e/60),e%60)}.${m+d>=60?' (60 minutes font 1 heure)':''}`)}
+ const w=pk([()=>{const h=R(1,3);return[`${h} h 30 min = ? min`,h*60+30,`${h} h = ${h*60} min, + 30 = ${h*60+30} min.`,'min']},()=>{const h=R(2,4);return[`${h*60} min = ? h`,h,`60 min = 1 h, donc ${h*60} min = ${h} h.`,'h']},()=>{const s=R(2,5);return[`${s} semaines = ? jours`,7*s,`1 semaine = 7 jours : ${s} × 7 = ${7*s} jours.`,'jours']},()=>[`1 jour = ? heures`,24,'Un jour dure 24 heures.','h']])();return Nm(`Complète :<div class="op">${w[0]}</div>`,w[1],w[2],{u:w[3]})});
+add(2,'Mesures','ce2-mes','Mesures et conversions','conversion km m cm mm kg g litre cl',[
+ [K,'<ul><li><b>1 km = 1 000 m</b> ; <b>1 m = 100 cm</b> ; <b>1 cm = 10 mm</b></li><li><b>1 kg = 1 000 g</b></li><li><b>1 L = 100 cL</b></li></ul>'],
+ [E,'<p>3 km = 3 000 m. 2 m 15 cm = 215 cm. 2 kg 500 g = 2 500 g.</p>'],
+ [A,'<p>Avant de comparer deux mesures, il faut les mettre dans la <b>même unité</b> : 1 m &gt; 90 cm car 1 m = 100 cm.</p>','wa'],
+ [PA,'<p>Lisez les étiquettes en cuisine (g, kg, cL, L) et les panneaux routiers (km).</p>','ok']],
+ ()=>{if(Math.random()<.2){const a=R(1,3),c=R(10,95),x=100*a+c,b=100*a+R(5,95),g=x<b?'<':x>b?'>':'=';return Qc(`Choisis le bon signe :<div class="op">${a} m ${c} cm … ${b} cm</div>`,g,[],`On convertit tout en cm : ${a} m ${c} cm = ${x} cm. Donc ${x} cm ${g} ${b} cm.`,{fix:['<','=','>'],cmp:1})}
+ const w=pk([()=>{const k=R(2,9);return[`${k} km = ? m`,1000*k,`1 km = 1 000 m, donc ${k} km = ${fmt(1000*k)} m.`,'m']},()=>{const k=R(2,9);return[`${k} cm = ? mm`,10*k,`1 cm = 10 mm, donc ${k} cm = ${10*k} mm.`,'mm']},()=>{const k=R(2,6);return[`${k} L = ? cL`,100*k,`1 L = 100 cL, donc ${k} L = ${100*k} cL.`,'cL']},()=>{const k=R(1,4),g=R(1,9)*100;return[`${k} kg ${g} g = ? g`,1000*k+g,`${k} kg = ${fmt(1000*k)} g, + ${g} g = ${fmt(1000*k+g)} g.`,'g']},()=>{const k=R(2,8);return[`${k} m = ? cm`,100*k,`1 m = 100 cm, donc ${k} m = ${100*k} cm.`,'cm']},()=>{const k=R(2,9);return[`${fmt(k*1000)} g = ? kg`,k,`1 000 g = 1 kg, donc ${fmt(k*1000)} g = ${k} kg.`,'kg']}])();return Nm(`Complète :<div class="op">${w[0]}</div>`,w[1],w[2],{u:w[3]})});
+add(2,'Géométrie','ce2-geo','Solides et cercle','solide cube pavé pyramide cylindre boule face arête sommet cercle rayon',[
+ [K,'<ul><li><b>Cube</b> : 6 faces carrées, 12 arêtes, 8 sommets.</li><li><b>Pavé droit</b> : 6 faces rectangulaires, 12 arêtes, 8 sommets.</li><li><b>Pyramide</b> à base carrée : 5 faces, 8 arêtes, 5 sommets.</li><li><b>Cylindre</b>, <b>boule</b>, <b>cône</b> : ils ont des surfaces courbes, ils roulent.</li></ul>'],
+ [E,'<p>Un <b>cercle</b> se trace au compas. Le <b>rayon</b> va du centre au cercle. Le <b>diamètre</b> traverse le cercle en passant par le centre : diamètre = 2 × rayon.</p>'],
+ [A,'<p>Une <b>face</b> est une surface plate, une <b>arête</b> est un bord (là où deux faces se touchent), un <b>sommet</b> est un coin.</p>','wa'],
+ [PA,'<p>Observez des boîtes (céréales = pavé, dé = cube, boîte de conserve = cylindre) et comptez faces, arêtes et sommets ensemble.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const s=pk([['un cube',[6,12,8]],['un pavé droit',[6,12,8]],['une pyramide à base carrée',[5,8,5]]]),w=pk([['faces',0],['arêtes',1],['sommets',2]]);return Nm(`Combien de <b>${w[0]}</b> a ${s[0]} ?`,s[1][w[1]],`${s[0][0].toUpperCase()+s[0].slice(1)} : ${s[1][0]} faces, ${s[1][1]} arêtes, ${s[1][2]} sommets.`)}
+ if(t==2){const w=pk([['J’ai 6 faces carrées toutes identiques.','le cube'],['Je roule et j’ai deux faces en forme de disque.','le cylindre'],['Je n’ai ni face plate ni arête, je roule dans tous les sens.','la boule'],['J’ai une base carrée et 4 faces triangulaires.','la pyramide'],['J’ai 6 faces rectangulaires.','le pavé droit']]);return Qc(`Devinette : <b>${w[0]}</b> Qui suis-je ?`,w[1],['le cube','le cylindre','la boule','la pyramide','le pavé droit'].filter(x=>x!=w[1]).sort(()=>Math.random()-.5),`C’est ${w[1]}.`)}
+ const r=R(2,9);return Math.random()<.5?Nm(`Le rayon d’un cercle mesure ${r} cm. Combien mesure son diamètre ?`,2*r,`Diamètre = 2 × rayon = 2 × ${r} = ${2*r} cm.`,{u:'cm'}):Nm(`Le diamètre d’un cercle mesure ${2*r} cm. Combien mesure son rayon ?`,r,`Rayon = diamètre ÷ 2 = ${2*r} ÷ 2 = ${r} cm.`,{u:'cm'})});
+
+/* ---------- CM1 ---------- */
+add(3,'Nombres','cm1-num','Les grands nombres','million milliers classe chiffre nombre de grand',[
+ [K,'<p>On regroupe les chiffres par <b>classes</b> de 3 : la classe des <b>millions</b>, des <b>milliers</b>, des <b>unités</b>.</p><div class="tw"><table><tr><th colspan="3">millions</th><th colspan="3">milliers</th><th colspan="3">unités</th></tr><tr><td>c</td><td>d</td><td>u</td><td>c</td><td>d</td><td>u</td><td>c</td><td>d</td><td>u</td></tr><tr><td></td><td>2</td><td>5</td><td>4</td><td>0</td><td>3</td><td>8</td><td>1</td><td>0</td></tr></table></div><p><b>25 403 810</b> : vingt-cinq millions quatre cent trois mille huit cent dix.</p>'],
+ [E,'<p>Dans 25 403 810, le chiffre des milliers est <b>3</b>, mais le nombre de milliers est <b>25 403</b>.</p>'],
+ [A,'<p>« Mille » est invariable : deux mille, trois mille (sans s). « Million » prend un s : deux millions.</p>','wa'],
+ [PA,'<p>Cherchez ensemble la population de votre ville, de la France (environ 68 millions) et lisez ces nombres.</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const n=R(10000,99999999),s=String(n).padStart(9,'0'),P=[['unités',8],['dizaines',7],['centaines',6],['unités de mille',5],['dizaines de mille',4],['centaines de mille',3],['unités de millions',2],['dizaines de millions',1]].filter(p=>p[1]>=9-String(n).length),w=pk(P.slice(2));return Nm(`Dans <b>${fmt(n)}</b>, quel est le chiffre des <b>${w[0]}</b> ?`,+s[w[1]],`On découpe en classes : ${fmt(n)}. Le chiffre des ${w[0]} est ${s[w[1]]}.`)}
+ if(t==2){const n=R(100000,9999999);return Nm(`Combien y a-t-il de <b>milliers</b> en tout dans ${fmt(n)} ?`,Math.floor(n/1000),`On prend tous les chiffres jusqu’à celui des unités de mille : ${fmt(Math.floor(n/1000))}.`)}
+ if(t==3){const n=R(1,999)*1000+R(0,999);return Nm(`Écris en chiffres : <b>« ${lettres(n)} »</b>`,n,`${fmt(n)} : la classe des milliers (${Math.floor(n/1000)}) puis la classe des unités (${String(n%1000).padStart(3,'0')}).`)}
+ const b=R(100,999)*1000+R(0,999),L=[...new Set([b,b+pk([9000,900,90000]),b-pk([9000,900]),Math.floor(b/10)])],ans=Math.max(...L);return Qc('Quel est le <b>plus grand</b> nombre ?',fmt(ans),L.map(fmt),'On compare d’abord le nombre de chiffres, puis chiffre par chiffre en partant de la gauche. Le plus grand est '+fmt(ans)+'.')});
+add(3,'Nombres','cm1-frac','Les fractions','fraction numérateur dénominateur comparer unité',[
+ [K,'<p>Dans '+fr(3,5)+', <b>5</b> est le <b>dénominateur</b> (en combien de parts on partage l’unité) et <b>3</b> le <b>numérateur</b> (combien de parts on prend).</p>'+fbar(3,5)],
+ [E,'<p>'+fr(5,5)+' = 1 (toute l’unité). '+fr(7,5)+' &gt; 1 car on prend plus de parts qu’il n’y en a dans une unité : '+fr(7,5)+' = 1 + '+fr(2,5)+'.</p><p>Avec le même dénominateur, la plus grande fraction a le plus grand numérateur : '+fr(2,7)+' &lt; '+fr(5,7)+'.</p>'],
+ [A,'<p>Plus le dénominateur est grand, plus les parts sont <b>petites</b> : '+fr(1,8)+' &lt; '+fr(1,3)+'.</p>','wa'],
+ [PA,'<p>Coupez une bande de papier en parts égales et coloriez : cela rend les fractions très concrètes.</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const d=R(2,10),n=R(1,d-1);const q=Qc('Quelle fraction de la bande est coloriée ?',`${n}/${d}`,[`${d-n}/${d}`,`${n}/${d+1}`,`${d}/${n}`,`${n}/${d-n}`],`La bande est partagée en ${d} parts égales, ${n} sont coloriées : ${n}/${d}.`,{img:fbar(n,d)});q.o=q.o.map(s=>{const[a,b]=s.split('/');return fr(a,b)});return q}
+ if(t==2){const d=R(2,9),n=R(1,2*d);return CMP(n/d,1,fr(n,d),'1',n==d?`${n}/${d} = 1 : on prend toutes les parts de l’unité.`:`On compare le numérateur (${n}) au dénominateur (${d}) : ${n} ${n<d?'<':'>'} ${d}, donc la fraction est ${n<d?'plus petite':'plus grande'} que 1.`)}
+ if(t==3){const d=R(3,10),a=R(1,d+3),b=R(1,d+3);return CMP(a/d,b/d,fr(a,d),fr(b,d),a==b?'Mêmes fractions.':`Même dénominateur : on compare les numérateurs, ${a} ${a<b?'<':'>'} ${b}.`)}
+ const d=R(2,8),k=R(2,4);return Nm(`Combien de fractions ${fr(1,d)} faut-il pour faire <b>${k} unités</b> ?`,k*d,`Il faut ${d} fois ${fr(1,d)} pour faire 1 unité, donc ${k} × ${d} = ${k*d} pour ${k} unités.`)});
+add(3,'Nombres','cm1-dec','Les nombres décimaux','décimal virgule dixième centième comparer',[
+ [K,'<p>Un nombre décimal a une <b>partie entière</b> et une <b>partie décimale</b>, séparées par une virgule.</p><div class="tw"><table><tr><th>dizaines</th><th>unités</th><th>,</th><th>dixièmes</th><th>centièmes</th></tr><tr><td>2</td><td>5</td><td>,</td><td>4</td><td>8</td></tr></table></div><p>'+fr(1,10)+' = 0,1 (un dixième) ; '+fr(1,100)+' = 0,01 (un centième). '+fr(37,10)+' = 3,7.</p>'],
+ [E,'<p>Comparer 3,5 et 3,45 : même partie entière ; dixièmes : 5 &gt; 4, donc <b>3,5 &gt; 3,45</b>. (3,5 = 3,50 et 50 centièmes &gt; 45 centièmes.)</p>'],
+ [A,'<p>Le nombre de chiffres après la virgule ne dit pas qui est le plus grand ! 2,7 &gt; 2,15.</p>','wa'],
+ [PA,'<p>Les prix (2,35 €) et les mesures (1,42 m) sont parfaits pour manipuler les décimaux.</p>','ok']],
+ ()=>{const t=R(1,5);
+ if(t==1){const n=R(11,999),d=pk([10,100]);return Nm(`Écris en nombre décimal : ${fr(n,d)}`,n/d,`${fr(n,d)} = ${fmt(n/d)} (${d==10?'dixièmes':'centièmes'}).`)}
+ if(t==2){const x=R(100,9999)/100,s=fmt(x).split(','),dc=(s[1]||'').padEnd(2,'0'),w=pk([['dixièmes',0],['centièmes',1]]);return Nm(`Dans <b>${fmt(x)}</b>, quel est le chiffre des <b>${w[0]}</b> ?`,+dc[w[1]],`Après la virgule : le 1er chiffre = dixièmes (${dc[0]}), le 2e = centièmes (${dc[1]}).`)}
+ if(t==3){const e=R(0,9),a=e+R(1,9)/10,b=e+R(10,99)/100;return CMP(a,b,null,null,`Même partie entière, on compare les dixièmes. ${fmt(a)} = ${fmt(a).padEnd(fmt(a).indexOf(',')+3,'0')} : on compare ${Math.round(a*100)%100} et ${Math.round(b*100)%100} centièmes.`)}
+ if(t==4){const e=R(1,9),L=[e+R(1,9)/10,e+R(10,99)/100,e+R(1,9)/100,e+R(1,9)/10].map(x=>rnd(x));const ans=Math.max(...L);return Qc('Quel est le <b>plus grand</b> nombre ?',fmt(ans),L.map(fmt),`On compare chiffre après chiffre : partie entière, puis dixièmes, puis centièmes. Le plus grand est ${fmt(ans)}.`)}
+ const e=R(1,9),d=R(0,9),c=R(1,9);return Nm(`Calcule :<div class="op">${e} + ${fr(d,10)} + ${fr(c,100)} = ?</div>`,e+d/10+c/100,`${e} unités, ${d} dixièmes, ${c} centièmes : ${fmt(e+d/10+c/100)}.`)});
+add(3,'Calcul','cm1-mul','La multiplication posée','multiplication posée deux chiffres 10 100 1000',[
+ [K,'<p>Pour multiplier par un nombre à 2 chiffres, on fait <b>deux lignes</b> : on multiplie par les unités, puis par les dizaines (en décalant d’un rang : on écrit un 0), et on additionne.</p>'],
+ [E,'<pre style="font:700 20px monospace;margin:0">     1 2 4\n   ×   3 6\n   ───────\n     7 4 4   (124 × 6)\n + 3 7 2 0   (124 × 30)\n   ───────\n   4 4 6 4</pre>'],
+ [A,'<p>N’oublie pas le <b>0</b> de décalage sur la deuxième ligne ! Et × 1 000 : on écrit trois 0 à droite d’un nombre entier.</p>','wa'],
+ [PA,'<p>Faites estimer le résultat avant le calcul (124 × 36 ≈ 100 × 40 = 4 000) pour repérer les grosses erreurs.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const a=R(12,99),b=R(12,49);return Nm(`Calcule :<div class="op">${a} × ${b} = ?</div>`,a*b,`${a} × ${b%10} = ${a*(b%10)} et ${a} × ${b-b%10} = ${fmt(a*(b-b%10))}. On additionne : ${a*(b%10)} + ${fmt(a*(b-b%10))} = ${fmt(a*b)}.`)}
+ if(t==2){const a=R(102,999),b=R(3,9);return Nm(`Calcule :<div class="op">${a} × ${b} = ?</div>`,a*b,mulX(a,b))}
+ const a=R(2,999),k=pk([10,100,1000]);return Nm(`Calcule :<div class="op">${a} × ${fmt(k)} = ?</div>`,a*k,`Pour multiplier un entier par ${fmt(k)}, on écrit ${String(k).length-1} zéro${k>10?'s':''} à droite : ${fmt(a*k)}.`)});
+add(3,'Calcul','cm1-div','La division posée','division posée quotient reste diviseur dividende',[
+ [K,'<p>Dans une division, on cherche le <b>quotient</b> q et le <b>reste</b> r : <b>dividende = diviseur × q + r</b>, avec r &lt; diviseur.</p>'],
+ [E,'<p>157 ÷ 6 : dans 15 dizaines, combien de fois 6 ? 2 fois (12), reste 3 dizaines. 37 unités : 6 fois (36), reste 1.</p><p>Quotient : <b>26</b>, reste : <b>1</b>. Vérification : 6 × 26 + 1 = 157 ✔️</p>'],
+ [A,'<p>Si le reste est plus grand que le diviseur, c’est que le quotient est trop petit.</p>','wa'],
+ [PA,'<p>Revoir les tables de multiplication est le meilleur moyen de progresser en division.</p>','ok']],
+ ()=>{const b=R(3,9),q=R(12,199),r=R(0,b-1),a=b*q+r;
+ if(Math.random()<.6)return Nm(`Calcule le <b>quotient</b> de la division :<div class="op">${a} ÷ ${b}</div>`,q,divX(a,b,q,r));
+ return Nm(`Quel est le <b>reste</b> de la division de ${a} par ${b} ?`,r,divX(a,b,q,r))});
+add(3,'Problèmes','cm1-pb','Problèmes à étapes','problème étapes plusieurs opérations',[
+ [K,'<p>Dans un problème à étapes, la réponse à une <b>question intermédiaire</b> (qu’on se pose soi-même) sert pour la suite.</p><p>Écris chaque étape : « Je cherche… / Je calcule… / Je trouve… ».</p>'],
+ [E,'<p>« 4 classes de 26 élèves et 3 classes de 24 élèves vont au musée. Un car transporte 50 élèves. Combien de cars ? »</p><p>4 × 26 = 104 ; 3 × 24 = 72 ; 104 + 72 = 176 élèves. 176 ÷ 50 = 3 reste 26 → il faut <b>4 cars</b>.</p>'],
+ [A,'<p>Attention au sens du reste : s’il reste des élèves, il faut un car de plus !</p>','wa'],
+ [PA,'<p>Laissez l’enfant expliquer sa démarche à voix haute, même si le calcul est faux : c’est le raisonnement qui compte.</p>','ok']],
+ ()=>{const n=NOM(),t=R(1,4);
+ if(t==1){const c=R(3,5),e=R(22,29),p=pk([40,50,60]),tot=c*e,k=Math.ceil(tot/p);return Nm(`${c} classes de ${e} élèves partent en sortie. Un car peut transporter ${p} élèves. Combien de cars faut-il au minimum ?`,k,`Élèves : ${c} × ${e} = ${tot}. ${tot} ÷ ${p} = ${Math.floor(tot/p)} reste ${tot%p}${tot%p?`, il faut donc un car de plus : ${k} cars`:` : ${k} cars`}.`,{u:'cars'})}
+ if(t==2){const a=R(3,6),pa=R(12,25),b=R(2,4),pb=R(5,9);return Nm(`${n} achète ${a} livres à ${pa} € et ${b} jeux de cartes à ${pb} €. Combien paie ${n} en tout ?`,a*pa+b*pb,`Livres : ${a} × ${pa} = ${a*pa} €. Jeux : ${b} × ${pb} = ${b*pb} €. Total : ${a*pa+b*pb} €.`,{u:'€'})}
+ if(t==3){const s=R(6,12)*10,j=pk([4,5,6]),d=R(10,s/2);return Nm(`Un livre a ${s} pages. ${n} en a déjà lu ${d}. Il veut finir le livre en ${j} jours en lisant le même nombre de pages chaque jour. Combien de pages par jour ? (le reste ne compte pas)`,Math.floor((s-d)/j),`Pages restantes : ${s} − ${d} = ${s-d}. ${s-d} ÷ ${j} = ${Math.floor((s-d)/j)}${(s-d)%j?` (reste ${(s-d)%j})`:''}.`)}
+ const m=R(2,4),p=m*R(1,3)*100;return Nm(`Un vélo coûte ${fmt(p)} €. Une trottinette coûte ${m} fois moins cher. Combien coûtent le vélo et la trottinette ensemble ?`,p+p/m,`Trottinette : ${fmt(p)} ÷ ${m} = ${fmt(p/m)} €. Ensemble : ${fmt(p)} + ${fmt(p/m)} = ${fmt(p+p/m)} €.`,{u:'€'})});
+add(3,'Mesures','cm1-per','Le périmètre','périmètre tour figure carré rectangle polygone',[
+ [K,'<p>Le <b>périmètre</b> est la longueur du <b>tour</b> d’une figure. On additionne la longueur de tous les côtés.</p><ul><li>Rectangle : P = (L + l) × 2</li><li>Carré : P = côté × 4</li></ul>'],
+ [E,rectF(8,5)+'<p>P = (8 + 5) × 2 = 13 × 2 = <b>26 cm</b>.</p>'],
+ [A,'<p>Toutes les longueurs doivent être dans la <b>même unité</b> avant d’additionner.</p>','wa'],
+ [PA,'<p>Faites mesurer le tour d’une table ou d’une feuille avec une ficelle, puis comparez au calcul.</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const L=R(5,15),l=R(2,L-1);return Nm('Quel est le périmètre de ce rectangle ?',2*(L+l),`P = (${L} + ${l}) × 2 = ${L+l} × 2 = ${2*(L+l)} cm.`,{img:rectF(L,l),u:'cm'})}
+ if(t==2){const c=R(3,25);return Nm(`Un carré a des côtés de ${c} cm. Quel est son périmètre ?`,4*c,`P = ${c} × 4 = ${4*c} cm.`,{u:'cm'})}
+ if(t==3){const a=R(5,12),b=R(4,10),c=R(4,10);return Nm('Quel est le périmètre de ce triangle ?',a+b+c,`On additionne les 3 côtés : ${a} + ${b} + ${c} = ${a+b+c} cm.`,{img:triL(a,b,c),u:'cm'})}
+ const c=R(3,15);return Nm(`Un carré a un périmètre de ${4*c} cm. Combien mesure un côté ?`,c,`Le carré a 4 côtés égaux : ${4*c} ÷ 4 = ${c} cm.`,{u:'cm'})});
+add(3,'Géométrie','cm1-ang','Les angles','angle droit aigu obtus équerre',[
+ [K,'<ul><li><b>Angle droit</b> : comme le coin d’une feuille (on le vérifie à l’équerre).</li><li><b>Angle aigu</b> : plus petit qu’un angle droit.</li><li><b>Angle obtus</b> : plus grand qu’un angle droit.</li></ul>'+angleS(90)],
+ [E,'<p>Les aiguilles d’une horloge à 3 h forment un angle droit. À 1 h, un angle aigu. À 5 h, un angle obtus.</p>'],
+ [A,'<p>La taille d’un angle ne dépend <b>pas</b> de la longueur des traits, seulement de leur écartement.</p>','wa'],
+ [PA,'<p>Avec deux crayons, formez des angles et faites deviner : aigu, droit ou obtus ?</p>','ok']],
+ ()=>{const k=R(1,4);if(k==4)return Qc('À 3 h pile, les aiguilles d’une horloge forment un angle…','droit',['aigu','obtus','plat'],'À 3 h, les aiguilles sont sur le 12 et le 3 : elles forment un angle droit.',{img:clock(3,0)});
+ const d=k==1?R(25,75):k==2?90:R(110,160),ans=d<90?'aigu':d==90?'droit':'obtus';return Qc('Cet angle est…',ans,['aigu','droit','obtus'],ans=='droit'?'C’est un angle droit (le petit carré le montre ; vérifie à l’équerre).':`Il est ${d<90?'plus petit':'plus grand'} qu’un angle droit : il est ${ans}.`,{img:angleS(d),fix:['aigu','droit','obtus']})});
+add(3,'Mesures','cm1-dur','Durées, dates et siècles','durée heure minute seconde siècle date calendrier',[
+ [K,'<ul><li>1 h = 60 min ; 1 min = 60 s</li><li>1 an = 12 mois = 365 jours (366 les années bissextiles)</li><li>1 siècle = <b>100 ans</b>. Le XXIe siècle va de 2001 à 2100.</li></ul>'],
+ [E,'<p>Durée de 9 h 40 à 11 h 15 : de 9 h 40 à 10 h → 20 min ; de 10 h à 11 h → 1 h ; de 11 h à 11 h 15 → 15 min. Total : <b>1 h 35 min</b>.</p><p>1789 → <b>XVIIIe</b> siècle (on prend 17 + 1).</p>'],
+ [A,'<p>Pour calculer une durée, passe par l’heure « ronde » suivante plutôt que de soustraire les minutes directement.</p>','wa'],
+ [PA,'<p>Faites calculer la durée d’un trajet ou d’un film, et placez les dates de l’histoire en famille sur une frise.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const h=R(7,15),m=R(1,11)*5,d=5*R(7,34),e=h*60+m+d;const ans=dur(d);return Qc(`Une activité commence à <b>${hm(h,m)}</b> et se termine à <b>${hm(Math.floor(e/60),e%60)}</b>. Combien de temps dure-t-elle ?`,ans,[dur(d+10),dur(d-10),dur(d+60),dur(Math.abs(d-40)+5)],(e<(h+1)*60?`De ${hm(h,m)} à ${hm(h,e%60)} : ${e%60} − ${m} = ${d} min.`:`De ${hm(h,m)} à ${hm(h+1,0)} : ${60-m} min. De ${hm(h+1,0)} à ${hm(Math.floor(e/60),e%60)} : ${dur(e-(h+1)*60)}. Total : ${ans}.`))}
+ if(t==2){const y=R(500,2025),c=Math.floor((y-1)/100)+1;return Qc(`En quel siècle se situe l’année <b>${y}</b> ?`,ROM(c)+'e',[ROM(c-1)+'e',ROM(c+1)+'e',ROM(Math.max(1,c-2))+'e'],`${y} : on prend les centaines (${Math.floor(y/100)})${y%100?' et on ajoute 1':''} → ${c}e siècle, soit le ${ROM(c)}e siècle.`)}
+ const w=pk([()=>{const h=R(2,5);return[`${h} h = ? min`,60*h,`1 h = 60 min, donc ${h} × 60 = ${60*h} min.`,'min']},()=>{const m=R(2,4),s=R(1,5)*10;return[`${m} min ${s} s = ? s`,60*m+s,`${m} × 60 = ${60*m} s, + ${s} = ${60*m+s} s.`,'s']},()=>{const k=R(2,5);return[`${k} siècles = ? ans`,100*k,`1 siècle = 100 ans.`,'ans']},()=>[`3 jours = ? h`,72,'1 jour = 24 h ; 3 × 24 = 72 h.','h']])();return Nm(`Complète :<div class="op">${w[0]}</div>`,w[1],w[2],{u:w[3]})});
+add(3,'Données','cm1-data','Tableaux et graphiques','graphique diagramme barres tableau lire données',[
+ [K,'<p>Un <b>diagramme en barres</b> permet de comparer des quantités : plus la barre est haute, plus la quantité est grande. On lit la valeur sur l’<b>axe vertical</b>.</p>'+barsS([['Lun',20],['Mar',35],['Mer',15]],5,'Diagramme en barres d’exemple : lundi 20, mardi 35, mercredi 15')],
+ [E,'<p>Dans ce graphique : mardi 35, lundi 20. Mardi, il y en a 35 − 20 = <b>15 de plus</b> que lundi.</p>'],
+ [A,'<p>Regarde bien l’<b>échelle</b> : chaque trait ne vaut pas forcément 1 !</p>','wa'],
+ [PA,'<p>Faites un relevé ensemble (température chaque jour, temps d’écran) et dessinez le graphique.</p>','ok']],
+ ()=>{const th=pk([['fruits vendus',['Pommes','Poires','Kiwis','Bananes','Prunes']],['élèves par sport',['Foot','Danse','Judo','Tennis','Natation']],['livres empruntés',['Lun','Mar','Mer','Jeu','Ven']]]),st=pk([5,10]),k=R(4,5),L=th[1].slice(0,k).map(l=>[l,st*R(1,9)]);
+ const img=barsS(L,st,`Diagramme en barres : ${th[0]}`),t=R(1,3),[a,b]=shf(L);
+ if(t==1)return Nm(`D’après le graphique (${th[0]}), quelle est la valeur pour <b>${a[0]}</b> ?`,a[1],`La barre « ${a[0]} » monte jusqu’à ${a[1]} (chaque trait vaut ${st}).`,{img});
+ if(t==2){if(a[1]==b[1])return Nm(`Quelle est la valeur pour <b>${a[0]}</b> ?`,a[1],`La barre monte jusqu’à ${a[1]}.`,{img});const[x,y]=a[1]>b[1]?[a,b]:[b,a];return Nm(`Combien de plus pour <b>${x[0]}</b> que pour <b>${y[0]}</b> ?`,x[1]-y[1],`${x[0]} : ${x[1]} ; ${y[0]} : ${y[1]}. Écart : ${x[1]} − ${y[1]} = ${x[1]-y[1]}.`,{img})}
+ const tot=L.reduce((s,x)=>s+x[1],0);return Nm(`Quel est le <b>total</b> (${th[0]}) ?`,tot,`${L.map(x=>x[1]).join(' + ')} = ${tot}.`,{img})});
+
+/* ---------- CM2 ---------- */
+add(4,'Nombres','cm2-num','Grands nombres et arrondis','milliard million arrondi arrondir valeur approchée',[
+ [K,'<p>Après les millions viennent les <b>milliards</b> : 1 milliard = 1 000 millions = 1 000 000 000.</p><p><b>Arrondir</b> un nombre, c’est le remplacer par la valeur « ronde » la plus proche.</p>'],
+ [E,'<p>Arrondir 47 386 au <b>millier</b> : il est entre 47 000 et 48 000 ; le chiffre des centaines est 3 (&lt; 5), donc on arrondit à <b>47 000</b>.</p><p>Arrondir 47 586 au millier → <b>48 000</b> (chiffre des centaines 5 ou plus : on arrondit au-dessus).</p>'],
+ [A,'<p>Pour arrondir, regarde le chiffre <b>juste à droite</b> du rang demandé : 0 à 4 → on garde ; 5 à 9 → on monte.</p>','wa'],
+ [PA,'<p>Les arrondis servent tous les jours : « environ combien coûtent les courses ? ». Faites estimer avant de payer.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const w=pk([['à la dizaine',10],['à la centaine',100],['au millier',1000],['à la dizaine de mille',10000]]),n=R(w[1]*10,w[1]*1000-1),r=Math.round(n/w[1])*w[1];return Nm(`Arrondis <b>${fmt(n)}</b> ${w[0]} près.`,r,`${fmt(n)} est entre ${fmt(Math.floor(n/w[1])*w[1])} et ${fmt(Math.floor(n/w[1])*w[1]+w[1])}. Le chiffre juste à droite est ${String(n).slice(-String(w[1]).length+1)[0]} : on arrondit à ${fmt(r)}.`)}
+ if(t==2){const m=R(1,99),k=R(1,999);const n=m*1e6+k*1e3;return Nm(`Écris en chiffres : <b>« ${lettres(n)} »</b>`,n,`Classe des millions : ${m}, classe des milliers : ${String(k).padStart(3,'0')}, classe des unités : 000 → ${fmt(n)}.`)}
+ const g=R(1,9),n=g*1e9+R(0,999)*1e6;return Nm(`Combien y a-t-il de <b>millions</b> en tout dans ${fmt(n)} ?`,n/1e6,`On prend tous les chiffres jusqu’à celui des unités de millions : ${fmt(n/1e6)}.`)});
+add(4,'Nombres','cm2-frac','Fractions : calculs','fraction quantité égale somme décimale encadrer',[
+ [K,'<ul><li><b>Fraction d’une quantité</b> : '+fr(3,4)+' de 20 = (20 ÷ 4) × 3 = 15.</li><li><b>Fractions égales</b> : '+fr(1,2)+' = '+fr(5,10)+' = '+fr(50,100)+' (on multiplie en haut et en bas par le même nombre).</li><li><b>Additionner</b> avec le même dénominateur : '+fr(2,7)+' + '+fr(3,7)+' = '+fr(5,7)+'.</li></ul>'],
+ [E,'<p>'+fr(17,5)+' = '+fr(15,5)+' + '+fr(2,5)+' = 3 + '+fr(2,5)+' : elle est comprise entre <b>3 et 4</b>.</p><p>'+fr(125,100)+' = 1,25.</p>'],
+ [A,'<p>On n’additionne <b>jamais</b> les dénominateurs : '+fr(2,7)+' + '+fr(3,7)+' ≠ '+fr(5,14)+'.</p>','wa'],
+ [PA,'<p>Utilisez les recettes de cuisine (« trois quarts d’un paquet de 500 g ») pour donner du sens aux fractions.</p>','ok']],
+ ()=>{const t=R(1,5);
+ if(t==1){const d=pk([2,3,4,5,10]),n=R(1,d-1),q=R(2,12)*d;return Nm(`Combien vaut ${fr(n,d)} de <b>${q}</b> ?`,q/d*n,`${q} ÷ ${d} = ${q/d}, puis × ${n} = ${q/d*n}.`)}
+ if(t==2){const d=pk([2,4,5]),n=R(1,d-1),k=pk([10,100].filter(x=>x%d==0));return Nm(`Complète :<div class="op">${fr(n,d)} = ${fr('?',k)}</div>`,n*k/d,`On multiplie en haut et en bas par ${k/d} : ${fr(n,d)} = ${fr(n*k/d,k)}.`)}
+ if(t==3){const d=R(5,12),a=R(1,d-2),b=R(1,d-a);return Nm(`Calcule :<div class="op">${fr(a,d)} + ${fr(b,d)} = ${fr('?',d)}</div>`,a+b,`Même dénominateur : on additionne les numérateurs, ${a} + ${b} = ${a+b}. On garde ${d}.`)}
+ if(t==4){const n=R(101,999),d=pk([10,100]);return Nm(`Écris en nombre décimal : ${fr(n,d)}`,n/d,`${fr(n,d)} = ${fmt(n/d)}.`)}
+ const d=R(3,8),e=R(1,6),r=R(1,d-1),n=e*d+r;return Nm(`${fr(n,d)} est compris entre ${e} et quel nombre entier ?`,e+1,`${fr(n,d)} = ${fr(e*d,d)} + ${fr(r,d)} = ${e} + ${fr(r,d)}. Donc entre ${e} et ${e+1}.`)});
+add(4,'Nombres','cm2-dec','Décimaux : comparer, ajouter, soustraire','décimal comparer ranger addition soustraction virgule intercaler',[
+ [K,'<p>Pour additionner ou soustraire des décimaux, on <b>aligne les virgules</b> (unités sous unités). On peut compléter avec des zéros : 3,6 = 3,60.</p>'],
+ [E,'<pre style="font:700 20px monospace;margin:0">  1 2 , 5 0\n+  3 , 7 5\n──────────\n  1 6 , 2 5</pre><p>10 − 3,6 = 10,0 − 3,6 = <b>6,4</b>.</p>'],
+ [A,'<p>Entre 2,3 et 2,4, il y a une infinité de nombres : 2,31 ; 2,35 ; 2,38…</p>','wa'],
+ [PA,'<p>Faites calculer le total d’un ticket de caisse ou la monnaie à rendre.</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const a=R(100,3000)/100,b=R(10,999)/10;return Nm(`Calcule :<div class="op">${fmt(a)} + ${fmt(b)} = ?</div>`,rnd(a+b),`On aligne les virgules : ${fmt(a)} + ${fmt(b)} = ${fmt(a+b)}.`)}
+ if(t==2){const a=pk([10,20,50,100]),b=R(11,a*10-1)/10;return Nm(`Calcule :<div class="op">${a} − ${fmt(b)} = ?</div>`,rnd(a-b),`${a} = ${a},0. On aligne les virgules : ${a},0 − ${fmt(b)} = ${fmt(a-b)}.`)}
+ if(t==3){const e=R(0,20),a=e+R(1,9)/10,b=rnd(e+R(1,99)/100);return CMP(rnd(a),b)}
+ const e=R(1,9),d=R(1,8),x=e+d/10,ans=fmt(rnd(x+R(1,9)/100));return Qc(`Quel nombre est compris entre <b>${fmt(x)}</b> et <b>${fmt(x+.1)}</b> ?`,ans,[fmt(rnd(x+.11)),fmt(rnd(x-.05)),fmt(e+(d+2)/10)],`${fmt(x)} = ${fmt(x)}0 et ${fmt(x+.1)} = ${fmt(x+.1)}0 : ${ans} est entre les deux.`)});
+add(4,'Calcul','cm2-mdec','Multiplier et diviser les décimaux','décimal multiplier diviser 10 100 1000 virgule',[
+ [K,'<p>× <b>10, 100, 1 000</b> : chaque chiffre prend une valeur 10, 100, 1 000 fois plus grande — la virgule se déplace de 1, 2, 3 rangs vers la <b>droite</b>.</p><p>÷ 10, 100, 1 000 : la virgule se déplace vers la <b>gauche</b>.</p>'],
+ [E,'<p>3,45 × 100 = <b>345</b>. 52 ÷ 100 = <b>0,52</b>. 2,5 × 4 = <b>10</b> (on calcule 25 × 4 = 100, puis on remet 1 chiffre après la virgule).</p>'],
+ [A,'<p>Pour un décimal, « ajouter un 0 » ne marche pas : 2,5 × 10 = 25, pas 2,50 !</p>','wa'],
+ [PA,'<p>Les conversions de mesures (m → cm) et les prix (× quantité) sont de bons entraînements.</p>','ok']],
+ ()=>{const t=R(1,3),k=pk([10,100,1000]);
+ if(t==1){const a=R(101,9999)/100;return Nm(`Calcule :<div class="op">${fmt(a)} × ${fmt(k)} = ?</div>`,rnd(a*k),`× ${fmt(k)} : la virgule se déplace de ${String(k).length-1} rang${k>10?'s':''} vers la droite → ${fmt(a*k)}.`)}
+ if(t==2){const a=R(3,9999);return Nm(`Calcule :<div class="op">${fmt(a)} ÷ ${fmt(k)} = ?</div>`,rnd(a/k),`÷ ${fmt(k)} : la virgule se déplace de ${String(k).length-1} rang${k>10?'s':''} vers la gauche → ${fmt(a/k)}.`)}
+ const a=R(11,99)/10,b=R(2,9);return Nm(`Calcule :<div class="op">${fmt(a)} × ${b} = ?</div>`,rnd(a*b),`On calcule ${Math.round(a*10)} × ${b} = ${Math.round(a*10)*b}, puis on place 1 chiffre après la virgule : ${fmt(a*b)}.`)});
+add(4,'Calcul','cm2-div','La division (diviseur à 2 chiffres, quotient décimal)','division posée deux chiffres quotient décimal reste',[
+ [K,'<p>Avec un diviseur à 2 chiffres, on estime chaque chiffre du quotient à l’aide des multiples du diviseur (on peut écrire sa « table » à côté).</p><p>On peut <b>continuer</b> la division après la virgule pour obtenir un quotient décimal : 15 ÷ 4 = 3,75.</p>'],
+ [E,'<p>864 ÷ 24 : 24 × 3 = 72 → dans 86, 3 fois, reste 14 ; 144 ÷ 24 = 6. Quotient : <b>36</b>.</p><p>15 ÷ 4 : 3 reste 3 → 30 dixièmes ÷ 4 = 7 reste 2 → 20 centièmes ÷ 4 = 5. Résultat <b>3,75</b>.</p>'],
+ [A,'<p>Vérifie toujours avec la multiplication : 24 × 36 = 864 ✔️</p>','wa'],
+ [PA,'<p>Encouragez l’estimation : « 864 ÷ 24, c’est à peu près 800 ÷ 20 = 40 ».</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const b=R(12,45),q=R(11,99);return Nm(`Calcule :<div class="op">${fmt(b*q)} ÷ ${b} = ?</div>`,q,`${b} × ${q} = ${fmt(b*q)}, donc le quotient est ${q}.`)}
+ if(t==2){const b=R(12,30),q=R(10,60),r=R(1,b-1),a=b*q+r;return Nm(`Quel est le <b>reste</b> de la division de ${fmt(a)} par ${b} ?`,r,divX(a,b,q,r))}
+ const b=pk([2,4,5,8]),a=R(5,60);if(a%b==0)return Nm(`Calcule :<div class="op">${a} ÷ ${b} = ?</div>`,a/b,`${b} × ${a/b} = ${a}.`);return Nm(`Calcule le quotient <b>décimal</b> :<div class="op">${a} ÷ ${b} = ?</div>`,a/b,`${a} ÷ ${b} = ${Math.floor(a/b)} reste ${a%b} ; on continue après la virgule : ${fmt(a/b)}. Vérification : ${b} × ${fmt(a/b)} = ${a}.`)});
+add(4,'Problèmes','cm2-prop','Proportionnalité et pourcentages','proportionnalité tableau règle trois pourcentage recette prix unitaire',[
+ [K,'<p>Deux grandeurs sont <b>proportionnelles</b> si on passe de l’une à l’autre en multipliant toujours par le <b>même nombre</b>.</p><div class="tw"><table><tr><th>cahiers</th><td>1</td><td>3</td><td>5</td></tr><tr><th>prix (€)</th><td>2</td><td>6</td><td>10</td></tr></table></div>'],
+ [E,'<p>« 3 cahiers coûtent 6 €. Combien coûtent 5 cahiers ? » → 1 cahier : 6 ÷ 3 = 2 €. 5 cahiers : 5 × 2 = <b>10 €</b>.</p><p><b>Pourcentages</b> : 50 % = la moitié ; 25 % = le quart ; 10 % = le dixième. 10 % de 250 = 25.</p>'],
+ [A,'<p>Tout n’est pas proportionnel ! L’âge et la taille d’un enfant, par exemple, ne le sont pas.</p>','wa'],
+ [PA,'<p>Doublez ou divisez une recette ensemble, calculez une réduction en magasin (-10 %, -50 %).</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const p=R(2,9),a=R(2,5),b=R(6,12);return Nm(`${a} cahiers coûtent ${a*p} €. Combien coûtent <b>${b} cahiers</b> ?`,b*p,`Prix d’un cahier : ${a*p} ÷ ${a} = ${p} €. ${b} cahiers : ${b} × ${p} = ${b*p} €.`,{u:'€'})}
+ if(t==2){const f=pk([150,200,250,300]),g=pk([[4,6],[4,8],[2,6],[6,9],[4,10]]);return Nm(`Pour ${g[0]} personnes, il faut ${f} g de farine. Combien de farine pour <b>${g[1]} personnes</b> ?`,f*g[1]/g[0],`Pour 1 personne : ${f} ÷ ${g[0]} = ${fmt(f/g[0])} g. Pour ${g[1]} : ${fmt(f/g[0])} × ${g[1]} = ${fmt(f*g[1]/g[0])} g.`,{u:'g'})}
+ if(t==3){const w=pk([[10,10],[50,2],[25,4],[20,5]]),q=w[1]*R(2,30);return Nm(`Calcule <b>${w[0]} %</b> de ${q}.`,q/w[1],`${w[0]} %, c’est ${w[0]==50?'la moitié':w[0]==25?'le quart':w[0]==10?'le dixième':'le cinquième'} : ${q} ÷ ${w[1]} = ${q/w[1]}.`)}
+ const k=R(2,9),a=R(2,6),b=a*R(2,4);return Nm(`Ce tableau est proportionnel. Complète :<div class="tw"><table><tr><td>${a}</td><td>${b}</td></tr><tr><td>${a*k}</td><td>?</td></tr></table></div>`,b*k,`On multiplie toujours par ${k} (${a} × ${k} = ${a*k}) : ${b} × ${k} = ${b*k}.`)});
+add(4,'Mesures','cm2-aire','Les aires','aire surface rectangle carré cm² m² quadrillage',[
+ [K,'<p>L’<b>aire</b> mesure la <b>surface</b> d’une figure (ce qu’elle recouvre), le <b>périmètre</b> mesure son tour.</p><ul><li>Rectangle : A = L × l</li><li>Carré : A = côté × côté</li></ul><p>Unités : <b>cm²</b> (un carré de 1 cm de côté), m², km².</p>'],
+ [E,rectF(5,3,'cm',1)+'<p>5 carreaux × 3 carreaux = <b>15 carreaux</b>. Si un carreau fait 1 cm², l’aire est 15 cm².</p>'],
+ [A,'<p>Ne confonds pas aire et périmètre : un rectangle 6 × 4 a une aire de 24 cm² et un périmètre de 20 cm.</p>','wa'],
+ [PA,'<p>Calculez la surface d’une pièce pour savoir combien de carrelage acheter : c’est un vrai problème d’aire.</p>','ok']],
+ ()=>{const t=R(1,4);
+ if(t==1){const L=R(4,9),l=R(2,L-1);return Nm('Combien de carreaux recouvre ce rectangle ?',L*l,`${L} carreaux sur ${l} : ${L} × ${l} = ${L*l} carreaux.`,{img:rectF(L,l,'cm',1),u:'carreaux'})}
+ if(t==2){const L=R(6,25),l=R(3,L-1);return Nm(`Quelle est l’aire d’un rectangle de ${L} cm sur ${l} cm ?`,L*l,`A = L × l = ${L} × ${l} = ${L*l} cm².`,{u:'cm²'})}
+ if(t==3){const a=R(5,8),b=R(4,6),c=R(2,a-2),d=R(1,b-2);return Nm('Combien de carreaux recouvre cette figure ?',a*b-c*d,`Grand rectangle : ${a} × ${b} = ${a*b}. On enlève le coin vide : ${c} × ${d} = ${c*d}. ${a*b} − ${c*d} = ${a*b-c*d} carreaux.`,{img:lshape(a,b,c,d),u:'carreaux'})}
+ const L=R(4,12),l=R(2,9);return Nm(`Un rectangle a une aire de ${L*l} cm². Sa longueur mesure ${Math.max(L,l)} cm. Quelle est sa largeur ?`,Math.min(L,l),`A = L × l, donc l = ${L*l} ÷ ${Math.max(L,l)} = ${Math.min(L,l)} cm.`,{u:'cm'})});
+add(4,'Mesures','cm2-conv','Conversions de mesures','conversion tableau km hm dam m dm cm mm kg g litre cl ml décimal',[
+ [K,'<div class="tw"><table><tr><th>km</th><th>hm</th><th>dam</th><th>m</th><th>dm</th><th>cm</th><th>mm</th></tr><tr><td></td><td></td><td></td><td>3</td><td>5</td><td>0</td><td></td></tr></table></div><p>Chaque unité vaut <b>10 fois</b> la suivante. 3,5 m = 35 dm = 350 cm. Même tableau pour les grammes (kg, hg, dag, g…) et les litres (L, dL, cL, mL).</p>'],
+ [E,'<p>3,5 km = 3 500 m. 250 cm = 2,5 m. 75 cL = 0,75 L. 1,2 kg = 1 200 g.</p>'],
+ [A,'<p>On place le chiffre des <b>unités</b> dans la colonne de l’unité de départ, puis on lit le nombre dans la colonne d’arrivée.</p>','wa'],
+ [PA,'<p>Lire les contenances (33 cL, 1,5 L) ou les distances (1,2 km) au quotidien rend les conversions concrètes.</p>','ok']],
+ ()=>{const w=pk([()=>{const x=R(11,99)/10;return[`${fmt(x)} km = ? m`,x*1000,`1 km = 1 000 m : ${fmt(x)} × 1 000 = ${fmt(x*1000)} m.`,'m']},()=>{const x=R(105,995);return[`${x} cm = ? m`,x/100,`100 cm = 1 m : ${x} ÷ 100 = ${fmt(x/100)} m.`,'m']},()=>{const x=R(11,99)/10;return[`${fmt(x)} kg = ? g`,x*1000,`1 kg = 1 000 g : ${fmt(x)} × 1 000 = ${fmt(x*1000)} g.`,'g']},()=>{const x=R(5,95);return[`${x} cL = ? L`,x/100,`100 cL = 1 L : ${x} ÷ 100 = ${fmt(x/100)} L.`,'L']},()=>{const x=R(12,95)*100;return[`${fmt(x)} mL = ? L`,x/1000,`1 000 mL = 1 L : ${fmt(x)} ÷ 1 000 = ${fmt(x/1000)} L.`,'L']},()=>{const x=R(11,99)/10;return[`${fmt(x)} m = ? mm`,x*1000,`1 m = 1 000 mm : ${fmt(x*1000)} mm.`,'mm']},()=>{const x=R(12,98);return[`${x} dm = ? m`,x/10,`10 dm = 1 m : ${x} ÷ 10 = ${fmt(x/10)} m.`,'m']}])();return Nm(`Complète :<div class="op">${w[0]}</div>`,rnd(w[1]),w[2],{u:w[3]})});
+add(4,'Géométrie','cm2-geo','Triangles, quadrilatères et cercle','triangle isocèle équilatéral rectangle losange carré quadrilatère cercle rayon diamètre',[
+ [K,'<ul><li>Triangle <b>isocèle</b> : 2 côtés égaux. <b>Équilatéral</b> : 3 côtés égaux. <b>Rectangle</b> : un angle droit.</li><li><b>Losange</b> : 4 côtés égaux. <b>Rectangle</b> : 4 angles droits. <b>Carré</b> : 4 côtés égaux et 4 angles droits (c’est à la fois un losange et un rectangle).</li></ul>'+triS('isocèle')],
+ [E,'<p>Sur une figure, les petits traits identiques sur des côtés veulent dire « même longueur ». Le petit carré veut dire « angle droit ».</p><p>Cercle : diamètre = 2 × rayon.</p>'],
+ [A,'<p>Un triangle équilatéral est aussi isocèle (il a au moins 2 côtés égaux) !</p>','wa'],
+ [PA,'<p>Tracez ensemble des figures à la règle, à l’équerre et au compas : la précision du geste aide à retenir les propriétés.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const s=pk(['équilatéral','isocèle','rectangle']);return Qc('Quelle est la nature de ce triangle ?',s,['équilatéral','isocèle','rectangle','quelconque'],{équilatéral:'Les 3 côtés portent le même codage : 3 côtés égaux, il est équilatéral.',isocèle:'Deux côtés ont le même codage : il est isocèle.',rectangle:'Le petit carré indique un angle droit : il est rectangle.'}[s],{img:triS(s),fix:['équilatéral','isocèle','rectangle','quelconque']})}
+ if(t==2){const w=pk([['Un quadrilatère qui a 4 côtés égaux (sans angle droit) est un…','losange'],['Un quadrilatère qui a 4 angles droits et des côtés de longueurs différentes est un…','rectangle'],['Un triangle qui a 3 côtés de même longueur est…','équilatéral'],['Un triangle qui a exactement 2 côtés de même longueur est…','isocèle'],['Un quadrilatère avec 4 côtés égaux et 4 angles droits est un…','carré']]);const o=['losange','rectangle','carré','trapèze','équilatéral','isocèle'].filter(x=>x!=w[1]);return Qc(w[0],w[1],shf(o).slice(0,3),`Réponse : ${w[1]}.`)}
+ const r=R(3,30)/2;return Math.random()<.5?Nm(`Un cercle a un rayon de ${fmt(r)} cm. Quel est son diamètre ?`,2*r,`Diamètre = 2 × rayon = ${fmt(2*r)} cm.`,{u:'cm'}):Nm(`Un cercle a un diamètre de ${fmt(2*r)} cm. Quel est son rayon ?`,r,`Rayon = diamètre ÷ 2 = ${fmt(r)} cm.`,{u:'cm'})});
+add(4,'Problèmes','cm2-pb','Problèmes complexes','problème étapes décimaux argent vitesse',[
+ [K,'<p>Pour un problème complexe : <b>1.</b> souligne la question, <b>2.</b> entoure les données utiles, <b>3.</b> écris les questions intermédiaires, <b>4.</b> calcule, <b>5.</b> vérifie la cohérence.</p>'],
+ [E,'<p>« J’achète 3 livres à 7,50 € et un stylo à 2,30 €. Je paie avec 50 €. » → 3 × 7,50 = 22,50 ; 22,50 + 2,30 = 24,80 ; 50 − 24,80 = <b>25,20 €</b>.</p>'],
+ [A,'<p>Toutes les données ne servent pas forcément : certaines sont là pour piéger !</p>','wa'],
+ [PA,'<p>Demandez à l’enfant d’inventer lui-même un problème à partir d’un calcul : c’est un excellent exercice.</p>','ok']],
+ ()=>{const n=NOM(),t=R(1,4);
+ if(t==1){const k=R(2,4),p=R(10,19)/2,s=R(11,49)/10,b=pk([50,100]);return Nm(`${n} achète ${k} livres à ${eur(p)} et un stylo à ${eur(s)}. ${n} paie avec un billet de ${b} €. Combien lui rend-on ?`,rnd(b-k*p-s),`Livres : ${k} × ${mon(p)} = ${eur(k*p)}. Total : ${mon(k*p)} + ${mon(s)} = ${eur(k*p+s)}. Rendu : ${b} − ${mon(k*p+s)} = ${eur(b-k*p-s)}.`,{u:'€'})}
+ if(t==2){const v=pk([60,80,90,100]),h=R(2,4);return Nm(`Une voiture roule à vitesse constante et parcourt ${v} km en 1 heure. Quelle distance parcourt-elle en ${h} h 30 min ?`,v*h+v/2,`En ${h} h : ${h} × ${v} = ${v*h} km. En 30 min (la moitié d’une heure) : ${v/2} km. Total : ${v*h+v/2} km.`,{u:'km'})}
+ if(t==3){const c=R(12,30),e=R(3,6),p=R(4,9);return Nm(`Une classe de ${c} élèves va au cinéma. Le billet coûte ${p} € par élève. Les ${e} adultes accompagnateurs ne paient pas. Combien coûte la sortie ?`,c*p,`Seuls les élèves paient : ${c} × ${p} = ${c*p} €. (Le nombre d’adultes ne sert à rien ici !)`,{u:'€'})}
+ const L=R(15,40),l=R(8,L-3),pr=pk([2,3,5]);return Nm(`Un jardin rectangulaire mesure ${L} m sur ${l} m. On veut l’entourer d’une clôture qui coûte ${pr} € le mètre. Quel est le prix de la clôture ?`,2*(L+l)*pr,`Périmètre : (${L} + ${l}) × 2 = ${2*(L+l)} m. Prix : ${2*(L+l)} × ${pr} = ${2*(L+l)*pr} €.`,{u:'€'})});
+add(4,'Données','cm2-data','Tableaux, graphiques et moyenne','tableau graphique lecture données courbe moyenne',[
+ [K,'<p>Un <b>tableau</b> se lit à l’intersection d’une ligne et d’une colonne. Un <b>graphique</b> se lit grâce à ses axes et à son échelle.</p><p>La <b>moyenne</b> de plusieurs nombres : on les additionne et on divise par combien il y en a. Moyenne de 12, 15 et 18 : (12 + 15 + 18) ÷ 3 = 15.</p>'],
+ [E,'<div class="tw"><table><tr><th></th><th>Filles</th><th>Garçons</th></tr><tr><th>CM1</th><td>13</td><td>12</td></tr><tr><th>CM2</th><td>11</td><td>15</td></tr></table></div><p>Il y a 15 garçons en CM2, et 13 + 11 = 24 filles en tout.</p>'],
+ [A,'<p>Avant de répondre, vérifie le <b>titre</b> du tableau et les <b>unités</b>.</p>','wa'],
+ [PA,'<p>Lisez ensemble un horaire de train, un tableau de résultats sportifs ou un bulletin météo.</p>','ok']],
+ ()=>{const t=R(1,3);
+ if(t==1){const c=['CM1','CM2'],v=[[R(9,16),R(9,16)],[R(9,16),R(9,16)]],i=R(0,1),j=R(0,1),G=['filles','garçons'];return Nm(`Combien y a-t-il de <b>${G[j]}</b> en <b>${c[i]}</b> ?<div class="tw" style="margin-top:8px"><table><tr><th></th><th>Filles</th><th>Garçons</th></tr><tr><th>CM1</th><td>${v[0][0]}</td><td>${v[0][1]}</td></tr><tr><th>CM2</th><td>${v[1][0]}</td><td>${v[1][1]}</td></tr></table></div>`,v[i][j],`On lit au croisement de la ligne « ${c[i]} » et de la colonne « ${G[j]} » : ${v[i][j]}.`)}
+ if(t==2){const k=pk([3,4,5]),m=R(8,16);let L;do{L=[...Array(k-1)].map(()=>m+R(-4,4));L.push(m*k-L.reduce((a,b)=>a+b,0))}while(L[k-1]<0||L[k-1]>20);return Nm(`${NOM()} a eu ces notes : <b>${L.join(' ; ')}</b>. Quelle est sa moyenne ?`,m,`Somme : ${L.join(' + ')} = ${m*k}. Il y a ${k} notes : ${m*k} ÷ ${k} = ${m}.`)}
+ const D=['Jan','Fév','Mar','Avr','Mai'].map(l=>[l,10*R(1,9)]),img=barsS(D,10,'Diagramme en barres : nombre de visiteurs par mois'),mx=D.reduce((a,b)=>b[1]>a[1]?b:a);if(D.filter(d=>d[1]==mx[1]).length>1)return Nm('Quel est le nombre total de visiteurs ?',D.reduce((s,d)=>s+d[1],0),`${D.map(d=>d[1]).join(' + ')} = ${D.reduce((s,d)=>s+d[1],0)}.`,{img});
+ return Qc('Quel mois a eu le <b>plus</b> de visiteurs ?',mx[0],D.map(d=>d[0]),`La barre la plus haute est celle de ${mx[0]} (${mx[1]} visiteurs).`,{img})});
+</script>
+<script>
+/* ===== Application ===== */
+let V='home',ARG=null,P=null,C={},RF={lv:null,q:''},CT=[],FL={};
+const get=id=>N.find(n=>n.id==id);
+const esc=t=>String(t).replace(/[<>&"']/g,'');
+const LVN=['Petit curieux','Compteur','Calculateur','Explorateur','Géomètre','Stratège','As du calcul','Mathémagicien','Génie des nombres','Légende des maths'];
+const lvl=()=>Math.min(9,Math.floor(S.xp/150));
+const AV=['🦊','🐱','🐶','🐼','🐸','🦁','🐙','🦄','🐢','🚀'];
+function sc(id){const a=(S.m[id]||[]).slice(-10);return a.length?Math.round(a.reduce((x,y)=>x+y,0)/a.length*100):0}
+function st(id){const n=(S.m[id]||[]).length,p=sc(id);if(!n)return['À découvrir',''];if(n<5)return['En cours',''];if(p<60)return['À renforcer','wa'];if(p>=90&&n>=10)return['Maîtrisée','ok'];if(p>=75)return['Acquise','ok'];return['En cours','']}
+const ofLv=l=>N.filter(n=>n.lv==l);
+const okN=l=>ofLv(l).filter(n=>st(n.id)[1]=='ok').length;
+const tot=()=>S.tot||0,good=()=>S.good||0;
+function streak(){let n=0;const d=new Date();if((S.days[key(d)]||0)<GOAL)d.setDate(d.getDate()-1);while((S.days[key(d)]||0)>=GOAL){n++;d.setDate(d.getDate()-1)}return n}
+function wk(d){d=new Date(d);d.setDate(d.getDate()-((d.getDay()+6)%7));return key(d)}
+function wkKeys(){const m=new Date(wk(new Date())+'T12:00');return[...Array(7)].map((_,i)=>{const d=new Date(m);d.setDate(m.getDate()+i);return key(d)})}
+const wkDays=()=>wkKeys().filter(k=>(S.days[k]||0)>0).length,wkQ=()=>wkKeys().reduce((s,k)=>s+(S.days[k]||0),0);
+function bar(p){return`<div class="bar"><i style="width:${Math.max(0,Math.min(100,p))}%"></i></div>`}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),3200)}
+function applyTheme(){const r=document.documentElement;if(S.th)r.setAttribute('data-theme',S.th);else r.removeAttribute('data-theme')}
+
+/* Fabrique une série de questions variées (sans doublon) */
+function gen(n){const q=n.g();q.nid=n.id;return q}
+function mkSet(ns,k){const out=[],seen=new Set();let tries=0;while(out.length<k&&tries<k*30){tries++;const n=ns[out.length%ns.length],q=gen(n),sig=q.q+'|'+(q.o||[]).join()+'|'+(q.img||'').length;if(seen.has(sig))continue;seen.add(sig);out.push(q)}return shf(out)}
+function sess(ns,k,back,title){if(!ns.length)return toast('Rien à réviser pour l’instant.');P={qs:mkSet(ns,k),i:0,ok:0,xp:0,back,title,ids:ns.map(n=>n.id),done:0};go('prac')}
+function start(id){sess([get(id)],10,'fiche:'+id,get(id).t)}
+function mixGo(){const l=S.lv??0;let ns=ofLv(l);if(l>0)ns=ns.concat(shf(ofLv(l-1)).slice(0,3));sess(shf(ns).slice(0,10),10,'train','Révision mélangée '+LVL[l])}
+function weakN(){return N.filter(n=>(S.m[n.id]||[]).length).sort((a,b)=>sc(a.id)-sc(b.id)).filter(n=>sc(n.id)<75)}
+function weakGo(){const w=weakN().slice(0,3);if(!w.length)return toast(tot()?'Aucun point faible : bravo ! 🎉':'Fais d’abord quelques exercices pour que je repère tes points faibles.');sess(w,10,'train','Mes points faibles')}
+function rec(){const L=ofLv(S.lv??0);return L.find(n=>st(n.id)[1]=='wa')||L.find(n=>!(S.m[n.id]||[]).length)||L.slice().sort((a,b)=>sc(a.id)-sc(b.id))[0]}
+
+/* ===== Navigation ===== */
+function go(v,a){if(C.iv&&v!='chrono'){clearInterval(C.iv);C={}}V=v;ARG=a;try{history.pushState({v,a},'')}catch(e){}render();window.scrollTo(0,0)}
+window.addEventListener('popstate',e=>{if(C.iv){clearInterval(C.iv);C={}}const s=e.state||{v:'home'};V=s.v;ARG=s.a;if(V=='prac'&&!P)V='home';render()});
+function back(b){if(!b)return go('home');const[v,a]=b.split(':');go(v,a)}
+
+/* ===== Accueil ===== */
+function setLv(l){S.lv=l;RF.lv=l;save();render();toast('Classe : '+LVL[l]+' ✅')}
+function home(){
+ if(S.lv==null)return`<div class="brand">Ton Pilier Maths</div><h1>Bienvenue ! 👋</h1><div class="card"><p>Ici, tu peux revoir <b>tout le programme de maths de l’école élémentaire</b>, du CP au CM2 : des leçons courtes, des exercices toujours nouveaux et du calcul mental chronométré.</p><h2>En quelle classe es-tu ?</h2><div class="chips">${LVL.map((l,i)=>`<button class="chip" onclick="setLv(${i})">${l}</button>`).join('')}</div><p class="mut">Tu pourras changer à tout moment, et réviser aussi les classes d’avant.</p></div>`;
+ const s=streak(),t=S.days[tk()]||0,r=rec(),l=S.lv,ok=okN(l),L=ofLv(l).length;
+ return`<div class="brand">Ton Pilier Maths · ${LVL[l]}</div><h1>Salut ${S.name?esc(S.name)+' ':''}${S.av||'👋'} !</h1>
+ <div class="card hero"><div class="flame" aria-hidden="true">${s?'🔥':'🌱'}</div><div style="flex:1"><div class="big">${s} jour${s>1?'s':''}</div><div class="mut">de suite à atteindre ton objectif</div>${bar(t/GOAL*100)}<div class="mut">Aujourd’hui : ${Math.min(t,GOAL)}/${GOAL} questions ${t>=GOAL?'✅':''}</div></div></div>
+ ${r?`<div class="card"><div class="mut">Je te propose</div><h2>${r.t}</h2><p class="mut">${r.dom} · <span class="tag ${st(r.id)[1]}">${st(r.id)[0]}</span></p><div class="modes" style="grid-template-columns:1fr 1fr;margin:0"><button class="btn s" onclick="go('fiche','${r.id}')">📖 La leçon</button><button class="btn" onclick="start('${r.id}')">✏️ M’entraîner</button></div></div>`:''}
+ <div class="modes"><button class="btn" onclick="go('chrono')">⏱️ Calcul mental chrono</button><button class="btn s" onclick="mixGo()">🔀 Révision mélangée ${LVL[l]}</button></div>
+ <div class="card"><div class="row"><b>Programme de ${LVL[l]}</b><span class="tag ok">${ok}/${L} acquises</span></div>${bar(ok/L*100)}<div class="row"><span class="mut">Niveau ${lvl()+1} · ${LVN[lvl()]} · ${S.xp} XP</span><button class="btn s sm" onclick="go('learn')">Voir tout</button></div></div>
+ <div class="card"><div class="mut" style="margin-bottom:6px">Changer de classe</div><div class="chips" style="margin:0">${LVL.map((x,i)=>`<button class="chip ${i==l?'on':''}" aria-pressed="${i==l}" onclick="setLv(${i})">${x}</button>`).join('')}</div></div>
+ <p class="note">Aussi disponible : <a class="lnk" href="index.html">Ton Pilier Français</a></p>`}
+
+/* ===== Leçons ===== */
+const norm=t=>t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+function lrows(){const q=norm(RF.q.trim());const L=q?N.filter(n=>norm(n.t+' '+n.dom+' '+n.kw+' '+LVL[n.lv]).includes(q)):ofLv(RF.lv);if(!L.length)return'<p class="mut">Aucune leçon trouvée.</p>';
+ return DOMS.filter(d=>L.some(n=>n.dom==d)).map(d=>`<div class="dh">${d}</div>`+L.filter(n=>n.dom==d).map(n=>{const s=st(n.id);return`<div class="nrow"><button class="lk" onclick="go('fiche','${n.id}')"><b>${n.t}</b>${q?` <span class="mut">· ${LVL[n.lv]}</span>`:''}<br><span class="tag ${s[1]}">${s[0]}</span></button><button class="btn s sm" onclick="start('${n.id}')" aria-label="S’entraîner : ${n.t}">✏️</button></div>`}).join('')).join('')}
+function learn(){if(RF.lv==null)RF.lv=S.lv??0;return`<h1>Leçons</h1><input class="inp" style="font-size:17px;margin-bottom:12px" type="search" placeholder="🔎 Chercher (fractions, heure, périmètre…)" aria-label="Chercher une leçon" value="${esc(RF.q)}" oninput="RF.q=this.value;$('#lst').innerHTML=lrows()">
+ <div class="tabs" role="tablist">${LVL.map((l,i)=>`<button role="tab" aria-selected="${RF.lv==i}" class="tab ${RF.lv==i?'on':''}" onclick="RF.lv=${i};RF.q='';render()">${l}</button>`).join('')}</div><div class="card" id="lst">${lrows()}</div>`}
+function fiche(){const n=get(ARG);if(!n)return home();const s=st(n.id);return`<button class="btn s sm" style="margin-bottom:12px" onclick="go('learn')">← Leçons</button><div class="mut">${LVL[n.lv]} · ${n.dom}</div><h1>${n.t}</h1><p><span class="tag ${s[1]}">${s[0]}</span>${(S.m[n.id]||[]).length?` <span class="mut">· réussite récente ${sc(n.id)} %</span>`:''}</p>`+n.f.map(([h,b,c])=>`<div class="blk ${c}"><h3>${h}</h3>${b}</div>`).join('')+`<button class="btn" onclick="start('${n.id}')">✏️ M’entraîner sur cette notion</button>`}
+
+/* ===== S’entraîner ===== */
+function train(){const l=S.lv??0;return`<h1>S’entraîner</h1><p class="mut">Les exercices sont tirés au hasard : tu peux recommencer autant de fois que tu veux, ce ne sera jamais pareil !</p><div class="modes">
+ <button class="btn" onclick="go('chrono')">⏱️ Calcul mental chrono (1 minute)</button>
+ <button class="btn s" onclick="mixGo()">🔀 Révision mélangée ${LVL[l]}</button>
+ <button class="btn s" onclick="weakGo()">🎯 Mes points faibles</button>
+ <button class="btn s" onclick="CT=[];go('ctrl')">📝 Préparer une évaluation</button></div>
+ <h2>Par notion · ${LVL[l]}</h2><div class="card">${ofLv(l).map(n=>{const s=st(n.id);return`<div class="nrow"><button class="lk" onclick="start('${n.id}')"><b>${n.t}</b><br><span class="tag ${s[1]}">${s[0]}</span></button><button class="btn sm" onclick="start('${n.id}')" aria-label="Commencer : ${n.t}">Go</button></div>`}).join('')}</div>
+ <p class="mut">Pour une autre classe, change-la depuis l’accueil ou passe par les Leçons.</p>`}
+function ctrl(){const l=S.lv??0;return`<button class="btn s sm" style="margin-bottom:12px" onclick="go('train')">← Retour</button><h1>Préparer une évaluation</h1><p>Coche les notions de ton évaluation. Je te ferai relire l’essentiel, puis un entraînement de 15 questions.</p><div class="tabs">${LVL.map((x,i)=>`<button class="tab ${i==(RF.cl??l)?'on':''}" onclick="RF.cl=${i};keepCT();render()">${x}</button>`).join('')}</div><div class="card">${ofLv(RF.cl??l).map(n=>`<label class="nrow" style="cursor:pointer;justify-content:flex-start"><input type="checkbox" class="cb" value="${n.id}" ${CT.includes(n.id)?'checked':''} style="width:24px;height:24px;flex:0 0 auto"><span><b>${n.t}</b><br><span class="mut">${n.dom}</span></span></label>`).join('')}</div><button class="btn" onclick="ctrlGo()">Continuer</button>`}
+function keepCT(){const all=[...document.querySelectorAll('.cb')];all.forEach(x=>{CT=CT.filter(i=>i!=x.value);if(x.checked)CT.push(x.value)})}
+function ctrlGo(){keepCT();if(!CT.length)return toast('Choisis au moins une notion');go('rappel')}
+function rappel(){return`<h1>Rappel rapide</h1><p class="mut">Relis l’essentiel (2 minutes), puis lance l’entraînement.</p>`+CT.map(id=>{const n=get(id);return`<div class="blk re"><h3>${n.t}</h3>${n.f[0][1]}</div>`}).join('')+`<button class="btn" onclick="sess(CT.map(get),15,'train','Préparation d’évaluation')">✏️ Je suis prêt·e : 15 questions</button>`}
+
+/* ===== Séance d’exercices ===== */
+function prac(){if(!P)return home();if(P.i>=P.qs.length)return bilan();const q=P.qs[P.i],n=get(q.nid);
+ let z;if(q.k=='qcm')z=`<div class="opts ${q.cmp?'cmp':''}">${q.o.map((o,j)=>`<button class="opt" onclick="pick(${j})">${o}</button>`).join('')}</div>`;
+ else z=`<form class="ans" onsubmit="chkNum();return false"><input id="inp" class="inp" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="Ta réponse" placeholder="Ta réponse">${q.u?`<b>${q.u}</b>`:''}</form><button class="btn" id="ok" onclick="chkNum()">Valider</button>`;
+ return`<div class="row" style="margin-bottom:8px"><button class="btn s sm" onclick="back(P.back)">✕ Quitter</button><span class="mut">Question ${P.i+1}/${P.qs.length} · ⭐ ${P.ok}</span></div>${bar(P.i/P.qs.length*100)}
+ <div class="card"><div class="mut">${LVL[n.lv]} · ${n.t}</div><div style="font-size:20px;margin:8px 0">${q.q}</div>${q.img||''}${z}<div id="fb" aria-live="polite"></div></div>`}
+function parseN(v){v=v.replace(/[\s  ]/g,'').replace(',','.').replace(/[€a-zA-Z²]+$/,'');return/^-?\d+(\.\d+)?$/.test(v)?+v:NaN}
+function chkNum(){const q=P.qs[P.i],e=$('#inp');if(!e||e.disabled)return;const x=parseN(e.value);if(isNaN(x)){e.focus();return toast(e.value.trim()?'Écris seulement un nombre (ex. 12 ou 3,5)':'Écris ta réponse 🙂')}
+ const g=Math.abs(x-q.a)<1e-9;e.disabled=true;e.style.borderColor=g?'var(--ok)':'var(--fl)';$('#ok').remove();done(g,(q.u=='€'?mon(q.a):fmt(q.a))+(q.u?' '+q.u:''))}
+function pick(j){const q=P.qs[P.i],bs=document.querySelectorAll('.opt');if(bs[0].disabled)return;const g=j===q.a;bs.forEach((b,k)=>{b.disabled=true;if(k===q.a)b.classList.add('ok');else if(k===j)b.classList.add('ko')});done(g,q.o[q.a])}
+function done(g,ans){const q=P.qs[P.i],d=tk(),m=g?3:1;P.xp+=m;S.xp+=m;if(g)P.ok++;(S.m[q.nid]=S.m[q.nid]||[]).push(g?1:0);if(S.m[q.nid].length>30)S.m[q.nid]=S.m[q.nid].slice(-30);
+ S.days[d]=(S.days[d]||0)+1;S.dc=S.dc||{};if(g)S.dc[d]=(S.dc[d]||0)+1;S.tot=tot()+1;if(g)S.good=good()+1;S.dn=S.dn||{};const dn=S.dn[d]=S.dn[d]||[];if(!dn.includes(q.nid))dn.push(q.nid);
+ if(S.days[d]==GOAL)setTimeout(()=>toast('🎯 Objectif du jour atteint !'),900);
+ $('#fb').innerHTML=`<div class="fb ${g?'ok':'ko'}"><b>${g?pk(['✅ Bravo !','✅ Exact !','✅ Super !','✅ Bien joué !']):'❌ Pas tout à fait.'}</b>${g?'':` La bonne réponse : <b>${ans}</b>.`}<br>${q.w}</div><button class="btn" id="nx" onclick="P.i++;render();window.scrollTo(0,0)">${P.i+1<P.qs.length?'Suivant →':'Voir mon bilan'}</button>`;$('#nx').focus({preventScroll:true});$('#fb').scrollIntoView({block:'nearest',behavior:'smooth'});chk()}
+function bilan(){const p=Math.round(P.ok/P.qs.length*100);if(!P.done){P.done=1;if(p==100&&P.qs.length>=10)FL.perf=1;chk()}
+ const msg=p==100?'Parfait ! 🏆':p>=80?'Très bien ! 🎉':p>=50?'C’est en bonne voie ! 💪':'Courage, relis la leçon et réessaie ! 📖';
+ return`<h1>${P.ok}/${P.qs.length} bonnes réponses</h1><div class="card"><div class="big">${msg}</div>${bar(p)}<p class="mut">${P.title} · +${P.xp} XP</p></div>
+ <div class="card"><h2>Où en es-tu ?</h2>${P.ids.map(id=>{const n=get(id),s=st(id);return`<div class="nrow"><button class="lk" onclick="go('fiche','${id}')"><b>${n.t}</b></button><span class="tag ${s[1]}">${s[0]}</span></div>`}).join('')}</div>
+ <div class="modes"><button class="btn" onclick="sess(P.ids.map(get),P.qs.length,P.back,P.title)">🔁 Une autre série</button>${P.ids.length==1?`<button class="btn s" onclick="go('fiche','${P.ids[0]}')">📖 Revoir la leçon</button>`:''}<button class="btn s" onclick="go('home')">🏠 Accueil</button></div>`}
+
+/* ===== Calcul mental chronométré ===== */
+function cq(l){const r=pk;const T=(a,b)=>({q:`${a} × ${b}`,a:a*b});
+ const P0=[()=>{const a=R(1,10),b=R(1,10);return{q:`${a} + ${b}`,a:a+b}},()=>{const a=R(5,20),b=R(1,Math.min(a,9));return{q:`${a} − ${b}`,a:a-b}},()=>{const a=R(1,9);return{q:`${a} + ? = 10`,a:10-a}},()=>{const a=R(1,10);return{q:`double de ${a}`,a:2*a}}];
+ const P1=[()=>{const a=R(11,89),b=R(2,9);return{q:`${a} + ${b}`,a:a+b}},()=>{const a=R(20,99),b=R(2,9);return{q:`${a} − ${b}`,a:a-b}},()=>T(r([2,3,4,5,10]),R(1,10)),()=>{const a=R(1,9)*10;return{q:`${a} + ? = 100`,a:100-a}},()=>{const a=R(6,25);return{q:`double de ${a}`,a:2*a}}];
+ const P2=[()=>T(R(2,9),R(2,9)),()=>T(R(2,9),R(2,9)),()=>{const a=R(2,99),k=r([10,100]);return{q:`${a} × ${k}`,a:a*k}},()=>{const a=R(12,95),b=R(11,49);return{q:`${a} + ${b}`,a:a+b}},()=>{const a=R(50,99),b=R(11,a-10);return{q:`${a} − ${b}`,a:a-b}},()=>{const a=R(10,49)*2;return{q:`moitié de ${a}`,a:a/2}}];
+ const P3=[()=>T(R(3,9),R(3,9)),()=>{const b=R(2,9),q=R(2,10);return{q:`${b*q} ÷ ${b}`,a:q}},()=>{const a=R(2,999),k=r([10,100,1000]);return{q:`${a} × ${fmt(k)}`,a:a*k}},()=>{const a=R(11,99);return{q:`${a} + ? = 100`,a:100-a}},()=>{const a=R(2,12),b=r([20,25,50]);return{q:`${a} × ${b}`,a:a*b}}];
+ const P4=[()=>T(R(4,9),R(4,9)),()=>{const b=R(3,9),q=R(3,10);return{q:`${b*q} ÷ ${b}`,a:q}},()=>{const x=R(11,999)/10,k=r([10,100]);return{q:`${fmt(x)} × ${k}`,a:rnd(x*k)}},()=>{const x=R(2,999),k=r([10,100]);return{q:`${x} ÷ ${k}`,a:rnd(x/k)}},()=>{const a=R(1,99)*10;return{q:`${a} + ? = 1 000`,a:1000-a}},()=>{const a=r([.5,.25,.75,1.5]),b=r([.5,.25,.75]);return{q:`${fmt(a)} + ${fmt(b)}`,a:a+b}},()=>{const a=R(2,20)*4;return{q:`quart de ${a}`,a:a/4}}];
+ return r([P0,P1,P2,P3,P4][l])()}
+function chrono(){const l=C.lv??S.lv??0,rc=(S.rec||{})[l]||0;
+ if(C.run)return`<div class="row"><span class="big" id="tm">60</span><span class="tag ok" id="sc">✔ 0</span></div>${bar(100).replace('<div class="bar">','<div class="bar" id="tb">')}<div class="card" id="cc"><div class="cbig" id="cqq">${C.q.q} = ?</div><form class="ans" onsubmit="cAns();return false"><input id="inp" class="inp" inputmode="decimal" autocomplete="off" enterkeyhint="go" aria-label="Ta réponse" placeholder="?"></form><button class="btn" onclick="cAns()">Valider</button></div><button class="btn s" onclick="C.end=0">Arrêter</button>`;
+ if(C.fin)return`<h1>Temps écoulé ! ⏱️</h1><div class="card"><div class="big">${C.ok} bonne${C.ok>1?'s':''} réponse${C.ok>1?'s':''}</div><p class="mut">${C.ko} erreur${C.ko>1?'s':''} · Niveau ${LVL[l]} · +${C.ok} XP</p>${C.nr?'<p><b>🎉 Nouveau record !</b></p>':`<p class="mut">Ton record : ${rc}</p>`}${C.err.length?`<h3>À revoir</h3><p>${C.err.slice(0,6).map(e=>`${e.q} = <b>${fmt(e.a)}</b>`).join('<br>')}</p>`:''}</div><div class="modes"><button class="btn" onclick="cStart()">🔁 Rejouer</button><button class="btn s" onclick="go('home')">🏠 Accueil</button></div>`;
+ return`<h1>Calcul mental chrono</h1><div class="card"><p>Réponds au plus de calculs possible en <b>1 minute</b>. Tape ta réponse puis appuie sur Entrée.</p><div class="mut" style="margin-bottom:6px">Niveau des calculs</div><div class="chips">${LVL.map((x,i)=>`<button class="chip ${i==l?'on':''}" aria-pressed="${i==l}" onclick="C.lv=${i};render()">${x}</button>`).join('')}</div><p class="mut">Ton record en ${LVL[l]} : <b>${rc}</b></p><button class="btn" onclick="cStart()">▶ C’est parti !</button></div>`}
+function cStart(){const l=C.lv??S.lv??0;clearInterval(C.iv);C={lv:l,run:1,ok:0,ko:0,err:[],end:Date.now()+60000,q:cq(l)};render();$('#inp').focus();
+ C.iv=setInterval(()=>{const r=Math.max(0,C.end-Date.now());const t=$('#tm');if(t){t.textContent=Math.ceil(r/1000);$('#tb i').style.width=r/600+'%'}if(r<=0)cEnd()},200)}
+function cAns(){const e=$('#inp');const x=parseN(e.value);if(isNaN(x))return e.focus();const g=Math.abs(x-C.q.a)<1e-9;if(g)C.ok++;else{C.ko++;C.err.push(C.q)}
+ const d=tk();S.days[d]=(S.days[d]||0)+1;if(g){S.dc=S.dc||{};S.dc[d]=(S.dc[d]||0)+1}
+ let nq;do nq=cq(C.lv);while(nq.q==C.q.q);C.q=nq;$('#cqq').textContent=C.q.q+' = ?';$('#sc').textContent='✔ '+C.ok;e.value='';const c=$('#cc');c.classList.remove('flash-ok','flash-ko');void c.offsetWidth;c.classList.add(g?'flash-ok':'flash-ko');e.focus()}
+function cEnd(){clearInterval(C.iv);C.iv=0;C.run=0;C.fin=1;S.rec=S.rec||{};C.nr=C.ok>((S.rec[C.lv])||0)&&C.ok>0;if(C.nr)S.rec[C.lv]=C.ok;S.xp+=C.ok;S.chd=S.chd||{};S.chd[tk()]=1;S.cbest=Math.max(S.cbest||0,C.ok);save();chk();render()}
+
+/* ===== Défis et badges ===== */
+const CH=[['d15','Réponds à 15 questions','d',15,()=>S.days[tk()]||0,20],['d10','Réussis 10 questions','d',10,()=>(S.dc||{})[tk()]||0,20],['d3n','Travaille 3 notions différentes','d',3,()=>((S.dn||{})[tk()]||[]).length,20],['dch','Fais une partie de calcul mental','d',1,()=>(S.chd||{})[tk()]||0,15],
+ ['w4','Travaille 4 jours cette semaine','w',4,wkDays,60],['w100','Réponds à 100 questions cette semaine','w',100,wkQ,80]];
+const BD=[['first','🌱','Premier pas','Répondre à ta 1re question',()=>tot()>=1],['g50','🎯','50 bonnes réponses','Cumuler 50 bonnes réponses',()=>good()>=50],['g300','🚀','300 bonnes réponses','Cumuler 300 bonnes réponses',()=>good()>=300],['perf','💎','Sans faute','Faire une série de 10 sans erreur',()=>FL.perf],
+ ['s3','🔥','3 jours de suite','Atteindre l’objectif 3 jours d’affilée',()=>(S.best||0)>=3],['s7','🌟','Une semaine !','Atteindre l’objectif 7 jours d’affilée',()=>(S.best||0)>=7],['c10','⏱️','Rapide','10 bonnes réponses en calcul mental',()=>(S.cbest||0)>=10],['c25','⚡','Éclair','25 bonnes réponses en calcul mental',()=>(S.cbest||0)>=25],
+ ['m1','🧠','Première notion','Maîtriser une notion',()=>N.some(n=>st(n.id)[0]=='Maîtrisée')],['m10','🏅','10 notions','Maîtriser 10 notions',()=>N.filter(n=>st(n.id)[0]=='Maîtrisée').length>=10],['lvl','🎓','Programme acquis','Acquérir toutes les notions de ta classe',()=>S.lv!=null&&okN(S.lv)==ofLv(S.lv).length],['all','👑','Tour du primaire','S’entraîner sur une notion de chaque classe',()=>LVL.every((_,i)=>ofLv(i).some(n=>(S.m[n.id]||[]).length))]];
+function chk(){S.b=S.b||{};S.best=Math.max(S.best||0,streak());BD.forEach(([id,i,n,d,f])=>{if(!S.b[id]&&f()){S.b[id]=tk();setTimeout(()=>toast('🏅 Nouveau badge : '+n),400)}});save()}
+function claim(id,p){S.ch=S.ch||{};const c=CH.find(x=>x[0]==id);if(S.ch[id+'@'+p]||c[4]()<c[3])return;S.ch[id+'@'+p]=1;S.xp+=c[5];toast('🏆 +'+c[5]+' XP');chk();render()}
+function chall(){const row=c=>{const p=c[2]=='d'?tk():wk(new Date()),v=Math.min(c[4](),c[3]),ok=v>=c[3],got=(S.ch||{})[c[0]+'@'+p];return`<div class="card"><div class="row"><b>${c[1]}</b><span class="tag ${got?'ok':''}">+${c[5]} XP</span></div>${bar(v/c[3]*100)}<div class="row"><span class="mut">${v}/${c[3]}</span>${got?'<span class="tag ok">Récupéré ✅</span>':ok?`<button class="btn sm" onclick="claim('${c[0]}','${p}')">Récupérer</button>`:''}</div></div>`};
+ return`<h1>Défis</h1><h2>Du jour</h2>${CH.filter(c=>c[2]=='d').map(row).join('')}<h2>De la semaine</h2>${CH.filter(c=>c[2]=='w').map(row).join('')}<h2>Badges</h2><div class="bg">${BD.map(([id,i,n,d])=>`<div class="bd ${(S.b||{})[id]?'on':''}"><span>${i}</span><b>${n}</b><small>${d}</small></div>`).join('')}</div>`}
+
+/* ===== Profil et progrès ===== */
+function savePn(){S.name=esc($('#pn').value.trim()).slice(0,16);save();toast('Prénom enregistré ✅');render()}
+function prof(){const dk=[...Array(14)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-13+i);return key(d)}),mx=Math.max(GOAL,...dk.map(k=>S.days[k]||0)),dc=S.dc||{};
+ return`<h1>Mon profil</h1><div class="card"><label for="pn"><b>Mon prénom</b></label><div class="row" style="margin-top:6px"><input id="pn" class="inp" style="font-size:17px" maxlength="16" value="${esc(S.name||'')}" placeholder="Prénom ou pseudo"><button class="btn sm" onclick="savePn()">OK</button></div>
+ <p style="margin:12px 0 6px"><b>Mon avatar</b></p><div class="chips">${AV.map(a=>`<button class="chip av ${S.av==a?'on':''}" aria-pressed="${S.av==a}" onclick="S.av='${a}';save();render()">${a}</button>`).join('')}</div>
+ <p style="margin:6px 0"><b>Ma classe</b></p><div class="chips">${LVL.map((x,i)=>`<button class="chip ${i==S.lv?'on':''}" aria-pressed="${i==S.lv}" onclick="setLv(${i})">${x}</button>`).join('')}</div>
+ <p style="margin:6px 0"><b>Affichage</b></p><div class="chips" style="margin:0">${[['','Auto'],['light','Clair'],['dark','Sombre']].map(([v,t])=>`<button class="chip ${(S.th||'')==v?'on':''}" onclick="S.th='${v}';save();applyTheme();render()">${t}</button>`).join('')}</div></div>
+ <div class="card"><div class="row"><div><div class="big">${S.xp} XP</div><div class="mut">Niveau ${lvl()+1} · ${LVN[lvl()]}</div></div><div style="text-align:right"><div class="big">${tot()?Math.round(good()/tot()*100):0} %</div><div class="mut">de réussite (${tot()} questions)</div></div></div>${bar(S.xp%150/150*100)}<p class="mut">Meilleure série : ${S.best||0} jour${(S.best||0)>1?'s':''} · Record calcul mental : ${S.cbest||0}</p></div>
+ <div class="card"><h2>Mes 14 derniers jours</h2><div class="chart" role="img" aria-label="Questions par jour sur 14 jours">${dk.map(k=>{const t=S.days[k]||0,g=dc[k]||0;return`<div class="col"><div class="stk" style="height:${t/mx*100}%"><i style="height:${t?g/t*100:0}%"></i></div><small>${+k.slice(8)}</small></div>`}).join('')}</div><p class="mut">Hauteur : questions faites · partie verte : bonnes réponses.</p></div>
+ <h2>Mes progrès par classe</h2>${LVL.map((L,i)=>{const ns=ofLv(i),ok=okN(i);return`<div class="card"><details ${i==S.lv?'open':''}><summary>${L} · ${ok}/${ns.length}</summary>${bar(ok/ns.length*100)}${ns.map(n=>{const s=st(n.id);return`<div class="nrow"><button class="lk" onclick="go('fiche','${n.id}')"><b>${n.t}</b><br><span class="mut">${n.dom}${(S.m[n.id]||[]).length?' · '+sc(n.id)+' %':''}</span></button><span class="tag ${s[1]}">${s[0]}</span></div>`}).join('')}</details></div>`}).join('')}
+ <div class="card"><h2>👪 Espace parents</h2><p class="mut">Les progrès sont enregistrés <b>sur cet appareil uniquement</b>. Pour les transférer (autre téléphone, tablette…), copiez ce code puis collez-le sur l’autre appareil.</p><button class="btn s" onclick="copyCode()">📋 Copier mon code de sauvegarde</button><textarea id="code" class="inp" style="font-size:13px;height:70px;margin-top:10px" readonly aria-label="Code de sauvegarde"></textarea>
+ <label for="rcode" class="mut">Restaurer une sauvegarde :</label><textarea id="rcode" class="inp" style="font-size:13px;height:70px;margin:6px 0 10px" aria-label="Coller un code de sauvegarde"></textarea><button class="btn s" onclick="restoreCode()">♻️ Restaurer</button>
+ <button class="btn s" style="margin-top:10px;color:var(--wa)" onclick="resetAll()">🗑️ Tout effacer</button></div>
+ <p class="note">Ton Pilier Maths · programme de l’école élémentaire (cycles 2 et 3)<br><a class="lnk" href="index.html">Ton Pilier Français</a></p>`}
+function mkCode(){return'TPM1.'+btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
+function copyCode(){const c=$('#code');c.value=mkCode();c.select();try{navigator.clipboard.writeText(c.value).then(()=>toast('Code copié ✅'),()=>toast('Copie le code à la main'))}catch(e){toast('Copie le code à la main')}}
+function restoreCode(){const v=$('#rcode').value.trim();try{if(!v.startsWith('TPM1.'))throw 0;const o=JSON.parse(decodeURIComponent(escape(atob(v.slice(5)))));if(typeof o.xp!='number'||typeof o.days!='object'||typeof o.m!='object')throw 0;if(!confirm('Remplacer la progression de cet appareil ?'))return;o.name=esc(o.name||'').slice(0,16);if(!AV.includes(o.av))delete o.av;if(!(o.lv>=0&&o.lv<=4))o.lv=null;S=o;save();applyTheme();toast('Progression restaurée ✅');render()}catch(e){toast('Code invalide. Vérifie que tu as tout copié.')}}
+function resetAll(){if(!confirm('Effacer toute la progression sur cet appareil ?'))return;S={xp:0,days:{},m:{},lv:null};save();applyTheme();go('home')}
+
+/* ===== Rendu ===== */
+function render(){const v={home,learn,fiche,train,ctrl,rappel,prac,chrono,chall,prof}[V]||home;$('#app').innerHTML=v();
+ const nv=V=='fiche'?'learn':/^(prac|ctrl|rappel|chrono)$/.test(V)?'train':V;
+ $('#nav').innerHTML=[['home','🏠','Accueil'],['learn','📖','Leçons'],['train','✏️','S’entraîner'],['chall','🏆','Défis'],['prof','👤','Profil']].map(([k,i,t])=>`<button class="${nv===k?'on':''}" ${nv===k?'aria-current="page"':''} onclick="go('${k}')"><span aria-hidden="true">${i}</span>${t}</button>`).join('');
+ const i=$('#inp');if(i&&!i.disabled&&V=='prac')i.focus({preventScroll:true})}
+applyTheme();try{history.replaceState({v:'home'},'')}catch(e){}render();
+</script>
+</body></html>
